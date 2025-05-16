@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 20s linear infinite;
+  white-space: nowrap;
+}
+
+html {
+  transition: background-color 0.3s ease;
+}
+
+html.dark {
+  background-color: #000000; /* gray-900 */
+}
+
+html:not(.dark) {
+  background-color: #ffff; /* gray-100 */
+}
