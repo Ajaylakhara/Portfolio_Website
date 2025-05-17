@@ -17,7 +17,7 @@ export default function Navbar({ toggleTheme, isDark }) {
         <div className="flex items-center space-x-6">
           <ul className="flex text-xl space-x-6">
             <li>
-              <Link to="/"className={`cursor-pointer ${
+              <Link to="/Portfolio_Website"className={`cursor-pointer ${
                   isDark
                     ? "text-gray-900 hover:text-gray-600"
                     : "text-white hover:text-gray-300"
