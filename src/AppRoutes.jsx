@@ -10,7 +10,7 @@ const AppRoutes = ({isDark=(false)}) => {
   return (
     <div>
       <Routes>
-      <Route path="/home" element={<Home isDark={isDark} />} />
+      <Route path="/" element={<Home isDark={isDark} />} />
         <Route path="/about" element={<About isDark={isDark} />} />
         <Route path="/projects" element={<Projects isDark={isDark} />} />
         <Route path="/contact" element={<Contact isDark={isDark} />} />
