@@ -15,7 +15,8 @@ const AppRoutes = ({isDark=(false)}) => {
         <Route path="/projects" element={<Projects isDark={isDark} />} />
         <Route path="/contact" element={<Contact isDark={isDark} />} />
         <Route path='/FaQs' element={<FAQs isDark={isDark}/>}/>
-        {/* <Route path="*" element={<NotFound isDark={isDark} />} /> */}
+        <Route path="*" element={<div>404 - Page Not Found</div>} />
+
       </Routes>
     </div>
   )
