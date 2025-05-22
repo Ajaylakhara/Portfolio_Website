@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Hostpial  from "../assets/projecting/Hosital.jpg";
 import TaskManagment  from "../assets/projecting/TaskMang.jpg";
 import Agnet from "../assets/projecting/Agnet.jpg";
+import portfolio from "../assets/projecting/portfolio.jpg"; 
 
 const projects = [
   {
@@ -24,7 +25,7 @@ const projects = [
     title: "Portfolio Website",
     tech: ["React", "Tailwind"],
     desc: "A personal portfolio showcasing skills and projects.",
-    img: "",
+    img: portfolio,
     link: "",
   },
   {
