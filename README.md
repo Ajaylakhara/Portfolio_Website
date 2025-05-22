@@ -17,8 +17,8 @@ A modern and responsive developer portfolio built using **React.js** and **Tailw
 - **Deployment:** Vercel
 
 ## 📎 Links
-- **Live Site:** [Your Live Site Link]
-- **GitHub:** [Repository Link]
+- **Live Site:** [[Your Live Site Link](https://ajaylakhara.github.io/Portfolio_Website/)]
+- **GitHub:** [Repository Link](https://github.com/Ajaylakhara)
 
 ---
 
