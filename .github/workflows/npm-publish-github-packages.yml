@@ -3,6 +3,9 @@
 
 name: Node.js Package
 
+exclude:
+  - Backend/node_modules
+  - node_modules
 on:
   release:
     types: [created]
