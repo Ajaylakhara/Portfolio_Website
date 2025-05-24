@@ -1,9 +1,9 @@
 import { motion as Motion } from "framer-motion";
 import { useState } from "react";
-import Hospital from "../assets/projecting/Hospital.jpg"; 
-import TaskManagement from "../assets/projecting/TaskManagement.jpg"; 
-import Agent from "../assets/projecting/Agent.jpg"; 
- import   portfolio from "../assets/projecting/portfolio.jpg"; 
+import Hospital from "../assets/projecting/Hosital.jpg"; 
+import TaskManagement from "../assets/projecting/TaskMang.jpg"; 
+import Agent from "../assets/projecting/Agnet.jpg"
+ import   portfolio from "../assets/projecting/Hosital.jpg"; 
 const projects = [
   {
     title: "Hospital Management System",

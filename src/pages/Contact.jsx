@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Using react-router-dom for navigation
+import { Link } from "react-router-dom";
+import axios from "axios"; // Import Axios
 
 const Contact = ({ isDark = false }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -14,20 +15,29 @@ const Contact = ({ isDark = false }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: "", email: "", message: "" }); // Reset form
-    }, 3000);
+
+    try {
+      // Send data to your API
+      const response = await axios.post("http://localhost:5000/api/contact", formData);
+
+      console.log("API Response:", response.data);
+      setIsSubmitted(true);
+
+      // Reset form after showing success message
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({ name: "", email: "", message: "" });
+      }, 3000);
+    } catch (error) {
+      console.error("Error submitting the form:", error);
+      alert("Something went wrong. Please try again.");
+    }
   };
 
   return (
-    <section
-      className={`py-20 text-center transition-colors duration-300 `}
-    >
+    <section className={`py-20 text-center transition-colors duration-300`}>
       <div className="container mx-auto px-6">
         <h2
           className={`text-5xl font-bold mb-4 leading-tight ${
@@ -74,7 +84,7 @@ const Contact = ({ isDark = false }) => {
               placeholder="Your Email"
               className={`w-full p-4 rounded-lg border ${
                 isDark
-                    ? " text-black border-gray-700 focus:ring-gray-500"
+                  ? " text-black border-gray-700 focus:ring-gray-500"
                   : " text-white border-gray-300 focus:ring-gray-400"
               } focus:ring-2 focus:outline-none`}
               required
@@ -86,7 +96,7 @@ const Contact = ({ isDark = false }) => {
               placeholder="Your Message"
               className={`w-full p-4 rounded-lg border ${
                 isDark
-                   ? " text-black border-gray-700 focus:ring-gray-500"
+                  ? " text-black border-gray-700 focus:ring-gray-500"
                   : " text-white border-gray-300 focus:ring-gray-400"
               } focus:ring-2 focus:outline-none`}
               rows="5"
