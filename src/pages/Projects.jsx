@@ -108,7 +108,7 @@ const Projects = ({ isDark = false }) => {
     <section
       id="projects"
       className={`py-20 min-h-screen transition-colors duration-300 ${
-        isDark ? "bg-gray-900" : "bg-gray-50"
+        isDark ? "bg-white" : "bg-black"
       }`}
     >
       <div className="container mx-auto px-6">
@@ -135,8 +135,8 @@ const Projects = ({ isDark = false }) => {
               className={`px-5 py-2 rounded-full text-sm font-medium shadow-md transition-all duration-300 ${
                 selectedTech === tech
                   ? isDark
-                    ? "bg-white text-black ring-2 ring-gray-900 border-b-2 border-black"
-                    : "bg-black text-white ring-2 ring-gray-200 border-b-2 border-white"
+                    ? "bg-white text-black border-0 "
+                    : "bg-black text-white  border-0"
                   : isDark
                   ? "bg-black text-white hover:bg-white hover:text-black"
                   : "bg-white text-black hover:bg-black hover:text-white"
