@@ -56,7 +56,7 @@ export default function Hero({ isDark = false }) {
           <Link to="projects" smooth duration={500} className={`px-6 py-3 ${isDark ? "bg-black text-white hover:bg-white hover:text-black" : "bg-white text-black hover:bg-black hover:text-white"}  rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400`}>
             Explore My Work
           </Link>
-          <a href="../../public/Ajay_Lakhara_Resume.pdf" download="Ajay_Lakhara_Resume.pdf" className={`px-6 py-3 ${isDark ? "bg-white text-black hover:bg-black hover:text-white" : "bg-black  text-white hover:bg-white hover:text-black "} rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400`}>
+          <a href="/Ajay_Lakhara_Resume.pdf" download="Ajay_Lakhara_Resume.pdf" className={`px-6 py-3 ${isDark ? "bg-white text-black hover:bg-black hover:text-white" : "bg-black  text-white hover:bg-white hover:text-black "} rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400`}>
             Download Resume
           </a>
         </div>
