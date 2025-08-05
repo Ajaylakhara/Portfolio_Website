@@ -10,7 +10,7 @@ const projects = [
     tech: ["React", "ASP.NET", "SQL Server"],
     desc: "A web application for managing hospital operations.",
     img: Hostpial,
-    link: "https://devrajchatribin.netlify.app/projects/indicov",
+    link: "",
   },
   {
     title: "Task Manager",
@@ -18,21 +18,21 @@ const projects = [
     desc: "A task management app for organizing daily tasks.",
     
     img: TaskManagment,
-    link: "https://devrajchatribin.netlify.app/projects/design-and-code",
+    link: "https://task-management-system-5j25nzqnt-ajay-lakharas-projects.vercel.app",
   },
   {
     title: "Portfolio Website",
     tech: ["React", "Tailwind"],
     desc: "A personal portfolio showcasing skills and projects.",
     img: "",
-    link: "",
+    link: "https://ajaylakhara.github.io/Portfolio_Website/",
   },
   {
     title: "Agent management system",
     tech: ["React", "Node.js", "MongoDB"],
     desc: "A web application for managing agents and their tasks.",
     img: Agnet,
-    link: "https://devrajchatribin.netlify.app/projects/snapalyzer",
+    link: "",
   },
 
 ];
