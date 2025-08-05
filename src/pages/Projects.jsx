@@ -17,14 +17,14 @@ const projects = [
     tech: ["React", "Node.js", "MongoDB"],
     desc: "A task management app for organizing daily tasks.",
     img: TaskManagement,
-    link: "",
+    link: "https://task-management-system-5j25nzqnt-ajay-lakharas-projects.vercel.app",
   },
   {
     title: "Portfolio Website",
     tech: ["React", "Tailwind"],
     desc: "A personal portfolio showcasing skills and projects.",
     img: portfolio,
-    link: "",
+    link: "https://ajaylakhara.github.io/Portfolio_Website/",
   },
   {
     title: "Agent management system",
