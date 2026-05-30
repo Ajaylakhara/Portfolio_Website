@@ -1,50 +1,90 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
+import { Menu } from "lucide-react";
 
-export default function Navbar({ toggleTheme, isDark }) {
-  const [menuOpen, setMenuOpen] = useState(false);
+const Navbar = () => {
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-40% 0px -40% 0px", threshold: 0 }
+    );
+
+    const sections = document.querySelectorAll("section[id]");
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
+  }, []);
 
   return (
-    <nav className={`fixed w-full z-50 top-0 backdrop-blur-md bg-opacity-70 transition-colors duration-300 ${isDark ? "bg-white/70" : "bg-black/70"}`}>
-      <div className="container mx-auto flex justify-between items-center px-6 py-3">
-        <h1 className={`text-2xl font-bold ${isDark ? "text-black" : "text-white"}`}>AL</h1>
+    <nav className="fixed top-6 left-0 w-full z-50 px-6">
+      <div className="max-w-4xl mx-auto">
+        <div className="bg-white/80 backdrop-blur-md border border-gray-200/50 rounded-full px-6 py-3 flex items-center justify-between shadow-[0_8px_30px_rgb(0,0,0,0.08)]">
+          
+          {/* Left: Logo */}
+          <Link to="/" className="flex items-center gap-2">
+            <span className="text-4xl font-handwritten font-bold tracking-normal text-[#000000]">
+              AL<span style={{ color: "#FF6321" }}>.</span>
+            </span>
+          </Link>
 
-        <div className="md:hidden">
-          <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
-            {menuOpen ? <X className={`${isDark ? "text-black" : "text-white"}`} /> : <Menu className={`${isDark ? "text-black" : "text-white"}`} />}
-          </button>
-        </div>
+          {/* Center: Navigation Links (Desktop) */}
+          <div className="hidden md:flex items-center gap-1 relative z-10">
+            {["Home", "Projects", "About", "Experience", 
+              "Process", "Case Study"].map((item) => {
+              const itemId = item.toLowerCase().replace(/\s+/g, "-");
+              const isActive = activeSection === itemId || (activeSection === "" && item === "Home");
+              return (
+                <a
+                  key={item}
+                  href={`#${itemId}`}
+                  style={{ position: "relative" }}
+                  className={`relative px-4 py-2 text-[14px] font-semibold transition-colors ${
+                    isActive ? "text-white" : "text-gray-500 hover:text-gray-900"
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="active-nav-bg"
+                      style={{ position: "absolute" }}
+                      className="absolute inset-0 bg-[#FF6321] rounded-full -z-10"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10" style={{ position: "relative" }}>{item}</span>
+                </a>
+              );
+            })}
+          </div>
 
-        <div className="hidden md:flex items-center space-x-6">
-          <ul className="flex text-xl space-x-6">
-            <li><Link to="/" className={`cursor-pointer ${isDark ? "text-gray-900 hover:text-gray-600" : "text-white hover:text-gray-300"} transition-colors duration-300`}>Home</Link></li>
-            <li><Link to="/about" className={`cursor-pointer ${isDark ? "text-gray-900 hover:text-gray-600" : "text-white hover:text-gray-300"} transition-colors duration-300`}>About</Link></li>
-            <li><Link to="/projects" className={`cursor-pointer ${isDark ? "text-gray-900 hover:text-gray-600" : "text-white hover:text-gray-300"} transition-colors duration-300`}>Projects</Link></li>
-            <li><Link to="/contact" className={`cursor-pointer ${isDark ? "text-gray-900 hover:text-gray-600" : "text-white hover:text-gray-300"} transition-colors duration-300`}>Contact</Link></li>
-          </ul>
-          <button onClick={toggleTheme} className={`p-2 rounded-full ${isDark ? "bg-gray-200 text-black" : "bg-black text-white"} focus:outline-none focus:ring-2 focus:ring-blue-400`} aria-label="Toggle theme">
-            {isDark ? "☀️" : "🌙"}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div className={`md:hidden px-6 pb-4 transition-all duration-300 ${isDark ? "bg-white text-black" : "bg-black text-white"}`}>
-          <ul className="space-y-4 text-xl">
-            <li><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
-            <li><Link to="/about" onClick={() => setMenuOpen(false)}>About</Link></li>
-            <li><Link to="/projects" onClick={() => setMenuOpen(false)}>Projects</Link></li>
-            <li><Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link></li>
-          </ul>
-          <div className="mt-4">
-            <button onClick={toggleTheme} className={`p-2 rounded-full ${isDark ? "bg-gray-200 text-black" : "bg-black text-white"} focus:outline-none focus:ring-2 focus:ring-blue-400`}>
-              {isDark ? "☀️" : "🌙"}
+          {/* Right: CTA & Mobile Menu */}
+          <div className="flex items-center gap-4 z-10">
+            <motion.button
+              whileHover={{ scale: 1.03, y: -1 }}
+              whileTap={{ scale: 0.97 }}
+              className="hidden md:block bg-[#1A1A1A] hover:bg-[#FF6321] text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-colors shadow-sm"
+            >
+              Let's Talk
+            </motion.button>
+            <button aria-label="Open Mobile Menu" className="md:hidden text-gray-800 hover:text-[#FF6321] transition-colors">
+              <Menu size={24} />
             </button>
           </div>
+
         </div>
-      )}
+      </div>
     </nav>
   );
-}
+};
+
+export default Navbar;

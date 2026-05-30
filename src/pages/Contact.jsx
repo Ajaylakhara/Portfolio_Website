@@ -1,189 +1,105 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Send, CheckCircle } from "lucide-react";
 
-const Contact = ({ isDark = false }) => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-    const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+const Contact = () => {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState("idle"); // idle, sending, success
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
-
-    // Simulate message sent and reset form
+    setStatus("sending");
+    // Simulate sending
     setTimeout(() => {
-      setIsSubmitted(false);
+      setStatus("success");
       setFormData({ name: "", email: "", message: "" });
-    }, 3000);
+    }, 1500);
   };
-  const contactInfo = {
-  email: "ajaylakhara748@gmail.com",
-  linkedIn: "https://www.linkedin.com/in/ajay-lakhara-9159b0190/",
-  Github: "https://github.com/Ajaylakhara",
-  resume: "../../public/Ajay_Lakhara_Resume.pdf",
-};
 
   return (
-    <section className={`py-20 text-center transition-colors duration-300`}>
-      <div>
-      <motion.div className="container mx-auto px-6">
-        <h2
-          className={`text-5xl font-bold mb-4 leading-tight ${
-            isDark
-              ? " bg-gradient-to-r from-gray-400 to-gray-900 bg-clip-text text-transparent"
-              : " bg-gradient-to-r from-gray-500 to-gray-200 bg-clip-text text-transparent"
-          }`}
-        >
-          Contact | Ajay Lakhara
-        </h2>
-        <p
-          className={`text-xl mb-10 ${
-            isDark ? "text-gray-600" : "text-gray-300"
-          }`}
-        >
-          Get in Touch with Me
-        </p>
-        {isSubmitted ? (
-          <div className="max-w-xl mx-auto p-6 bg-green-100 rounded-lg">
-            <p className="text-green-700 text-xl font-semibold">
-              Message sent successfully!
-            </p>
-          </div>
-        ) : (
-          <form className="max-w-xl mx-auto space-y-6" onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Your Name"
-              className={`w-full p-4 rounded-lg border ${
-                isDark
-                  ? " text-black border-gray-700 focus:ring-gray-500"
-                  : " text-white border-gray-300 focus:ring-gray-400"
-              } focus:ring-2 focus:outline-none`}
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Your Email"
-              className={`w-full p-4 rounded-lg border ${
-                isDark
-                  ? " text-black border-gray-700 focus:ring-gray-500"
-                  : " text-white border-gray-300 focus:ring-gray-400"
-              } focus:ring-2 focus:outline-none`}
-              required
-            />
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              placeholder="Your Message"
-              className={`w-full p-4 rounded-lg border ${
-                isDark
-                  ? " text-black border-gray-700 focus:ring-gray-500"
-                  : " text-white border-gray-300 focus:ring-gray-400"
-              } focus:ring-2 focus:outline-none`}
-              rows="5"
-              required
-            ></textarea>
-            <button
-              type="submit"
-              className={`w-full py-3 px-6 rounded-lg font-semibold transition-colors duration-300 ${
-                isDark
-                  ? "bg-black text-white hover:bg-white hover:text-black"
-                  : "bg-white text-black hover:bg-black hover:text-white"
-              } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400`}
-            >
-              Send Message
-            </button>
-          </form>
-        )}
-        </motion.div>
-        
+    <div className="pt-32 pb-20">
+      <section className="container mx-auto px-6 max-w-4xl">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="mt-10"
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
         >
-          <h2
-            className={`text-6xl font-semibold mb-4 ${
-              isDark ? "text-gray-900" : "text-white"
-            }`}
-          >
-            Contact Me
-          </h2>
-          <div className="mt-6 flex justify-center gap-4">
-            <a
-              href={`mailto:${contactInfo.email}`}
-              className={`text-2xl ${
-                isDark
-                  ? "text-gray-500 hover:text-gray-200"
-                  : "text-gray-300 hover:text-gray-900"
-              } transition-colors duration-300`}
-            >
-              {" "}
-              Email
-            </a>
-            <a
-              href={contactInfo.linkedIn}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`text-2xl ${
-                isDark
-                  ? "text-gray-500 hover:text-gray-200"
-                  : "text-gray-300 hover:text-gray-900"
-              } transition-colors duration-300`}
-            >
-              LinkedIn
-            </a>
-            <a
-              href={contactInfo.Github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`text-2xl ${
-                isDark
-                  ? "text-gray-500 hover:text-gray-200"
-                  : "text-gray-300 hover:text-gray-900"
-              } transition-colors duration-300`}
-            >
-              GitHub
-            </a>
-          </div>
-          <div className="mt-6 flex text-xl justify-center gap-4">
-           <a href="../../public/Ajay_Lakhara_Resume.pdf" download="Ajay_Lakhara_Resume.pdf" className={`px-6 py-3 ${isDark ? "bg-white text-black hover:bg-black hover:text-white" : "bg-black  text-white hover:bg-white hover:text-black "} rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400`}>
-            Download Resume
-          </a>
-          </div>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter">
+            Get in <span className="text-accent">touch.</span>
+          </h1>
+          <p className="text-gray-400 text-lg">
+            Have a project in mind or just want to say hi? I'd love to hear from you.
+          </p>
         </motion.div>
-        <motion.div className="mt-10">
-          <Link
-            to="/faqs"
-            className={`text-lg font-semibold ${
-              isDark
-                ? "text-gray-900 hover:text-gray-200"
-                : "text-gray-200 hover:text-gray-900"
-            } transition-colors duration-300`}
-          >
-            FAQs
-          </Link>
-        </motion.div>
-      
-      </div>
-    </section>
+
+        <div className="bg-surface border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl">
+          {status === "success" ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="py-12 text-center"
+            >
+              <CheckCircle className="mx-auto text-accent mb-6" size={64} />
+              <h2 className="text-2xl font-bold mb-2">Message Sent!</h2>
+              <p className="text-gray-400 mb-8">Thank you for reaching out. I'll get back to you shortly.</p>
+              <button
+                onClick={() => setStatus("idle")}
+                className="text-accent hover:underline"
+              >
+                Send another message
+              </button>
+            </motion.div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-xs uppercase tracking-widest text-gray-500 font-bold ml-1">Name</label>
+                  <input
+                    required
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="John Doe"
+                    className="w-full bg-background border border-white/10 rounded-xl px-5 py-4 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs uppercase tracking-widest text-gray-500 font-bold ml-1">Email</label>
+                  <input
+                    required
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="john@example.com"
+                    className="w-full bg-background border border-white/10 rounded-xl px-5 py-4 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all"
+                  />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs uppercase tracking-widest text-gray-500 font-bold ml-1">Message</label>
+                <textarea
+                  required
+                  rows="5"
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  placeholder="Tell me about your project..."
+                  className="w-full bg-background border border-white/10 rounded-xl px-5 py-4 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all resize-none"
+                ></textarea>
+              </div>
+              <button
+                disabled={status === "sending"}
+                type="submit"
+                className="w-full py-5 bg-accent text-white rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-accent-hover transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-accent/20 border-glow"
+              >
+                {status === "sending" ? "Sending..." : "Send Message"}
+                <Send size={18} />
+              </button>
+            </form>
+          )}
+        </div>
+      </section>
+    </div>
   );
 };
 

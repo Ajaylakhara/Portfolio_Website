@@ -1,51 +1,42 @@
 import React from "react";
-import { Link } from "react-scroll";
+import { Github, Linkedin, Mail } from "lucide-react";
 
-export default function Footer({ isDark = false }) {
+export default function Footer({ isDark }) {
   return (
-    <footer className="py-6 text-center dark:   relative transition-colors duration-300">
-      <div
-        className={`"container mx-auto px-6 border-t ${
-          isDark
-            ? "text-gray-600 border-gray-900 "
-            : "text-gray-400 border-gray-100"
-        }`}
-      >
-        <p>© 2025 Ajay Lakhara  | All Rights Reserved</p>
-        <div className="mt-2 flex justify-center gap-4">
+    <footer className="py-6 border-t border-black/5 dark:border-white/5 bg-background">
+      <div className="container mx-auto px-6 flex flex-col items-center justify-center gap-4 text-center">
+        <div className="text-gray-600 text-sm font-medium">
+          © {new Date().getFullYear()} Ajay Lakhara. All rights reserved.
+        </div>
+        
+        <div className="flex gap-6 justify-center">
           <a
             href="https://github.com/Ajaylakhara"
             target="_blank"
             rel="noopener noreferrer"
-            className={`${isDark ? "hover:text-gray-200 " : "hover:text-gray-900"}
-            transition-colors duration-300`}
+            className="text-gray-600 hover:text-primary transition-colors duration-300"
+            aria-label="GitHub"
           >
-            GitHub
+            <Github size={18} />
           </a>
           <a
             href="https://www.linkedin.com/in/ajay-lakhara-9159b0190/"
             target="_blank"
             rel="noopener noreferrer"
-            className={`${isDark ? "hover:text-gray-200 " : "hover:text-gray-900"}
-            transition-colors duration-300`}
+            className="text-gray-600 hover:text-primary transition-colors duration-300"
+            aria-label="LinkedIn"
           >
-            LinkedIn
+            <Linkedin size={18} />
+          </a>
+          <a
+            href="mailto:ajaylakhara748@gmail.com"
+            className="text-gray-600 hover:text-primary transition-colors duration-300"
+            aria-label="Email"
+          >
+            <Mail size={18} />
           </a>
         </div>
       </div>
-      <Link
-        to="home"
-        smooth
-        duration={500}
-        className={`absolute right-6 bottom-6 p-2  ${
-          isDark ? "text-black" : "text-white"
-        } rounded-full hover:bg-blue-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gray-300`}
-        aria-label="Back to top"
-      >
-        ↑
-      </Link>
     </footer>
   );
 }
-
-// dark:

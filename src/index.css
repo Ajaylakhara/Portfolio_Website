@@ -1,28 +1,139 @@
 @import "tailwindcss";
 
-@keyframes marquee {
-  from {
-    transform: translateX(0);
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  --font-handwritten: 'Caveat', cursive;
+
+  --color-background: #F5F4F3;
+  --color-primary: #FF6321;
+  --color-secondary: #060612;
+  --color-gray-text: #69686E;
+  --color-border-gray: #E5E7EB;
+  
+  /* Gold Palette for Premium Sections */
+  --color-gold-shadow: #6e4f00;
+  --color-gold-base: #c9a227;
+  --color-gold-highlight: #ffd700;
+  --color-gold-shine: #fff3b0;
+  --color-dark-bg: #050505;
+}
+
+:root {
+  --background: 24 15% 95%;
+  --foreground: 240 50% 5%;
+  --primary: 18 100% 56%;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-secondary selection:bg-primary/30 selection:text-primary;
+    font-family: var(--font-sans);
   }
-  to {
-    transform: translateX(-100%);
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
   }
 }
 
-.animate-marquee {
-  display: flex;
-  animation: marquee 20s linear infinite;
-  white-space: nowrap;
+@layer utilities {
+  .font-handwritten {
+    font-family: 'Caveat', cursive;
+  }
+
+  @keyframes flow {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-flow {
+    animation: flow 45s linear infinite;
+    width: max-content;
+  }
+
+  .animate-flow:hover {
+    animation-play-state: paused;
+  }
+
+  .text-glow-primary {
+    text-shadow: 0 0 20px rgba(255, 99, 33, 0.2);
+  }
+
+  /* Refined shadows for Agnos-style buttons */
+  .shadow-agnos-orange {
+    box-shadow: 0px 0px 0px 1px #CF4E17, inset 0px 1.4px 1px 0px rgba(255, 255, 255, 0.08), 0px 1.4px 4px 0px rgba(6, 6, 18, 0.3);
+  }
+
+  .shadow-agnos-black {
+    box-shadow: inset 0px 1.4px 1px 0px rgba(255, 255, 255, 0.08), 0px 0px 0px 1.4px #4A4A4A;
+  }
+
+  .shadow-agnos-badge {
+    box-shadow: inset 0px 0px 5px 0px rgba(6, 6, 18, 0.18);
+  }
+
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+  }
+
+  @keyframes spin-clockwise {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  @keyframes spin-counter-clockwise {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
+  }
+
+  .animate-spin-clockwise {
+    animation: spin-clockwise 40s linear infinite;
+  }
+  .animate-spin-counter-clockwise {
+    animation: spin-counter-clockwise 40s linear infinite;
+  }
+  .animate-spin-clockwise-slow {
+    animation: spin-clockwise 45s linear infinite;
+  }
+  .animate-spin-counter-clockwise-slow {
+    animation: spin-counter-clockwise 45s linear infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(var(--tw-rotate, 0deg)); }
+  50% { transform: translateY(-10px) rotate(var(--tw-rotate, 0deg)); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
 html {
-  transition: background-color 0.3s ease;
+  scroll-behavior: smooth;
 }
 
-html.dark {
-  background-color: #000000; /* gray-900 */
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-html:not(.dark) {
-  background-color: #ffff; /* gray-100 */
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full border-2 border-background;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary/50;
+}
+
+/* Global Recruiter-Ready Glow Effects */
+.hover-glow-orange {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hover-glow-orange:hover {
+  box-shadow: 0 0 25px rgba(255, 99, 33, 0.5);
 }

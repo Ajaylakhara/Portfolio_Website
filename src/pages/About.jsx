@@ -1,242 +1,108 @@
 import React from "react";
 import { motion } from "framer-motion";
-import HtmlLogo from "../assets/Images/html-5.png";
-import CssLogo from "../assets/Images/css-3.png";
-import JsLogo from "../assets/Images/js.png";
-import ReactLogo from "../assets/Images/physics.png";
-import NodeLogo from "../assets/Images/nodejs.png";
-import TailwindLogo from "../assets/Images/Tailwind CSS.png";
-import python from "../assets/Images/icons8-python-144.png";
-import CSharp from "../assets/Images/icons8-c-sharp-logo-64.png";
-import bootstrap from "../assets/Images/bootstrap_5968672.png";
-import Express from "../assets/Images/icons8-express-js-64.png";
-import MongoDB from "../assets/Images/MongoDB.png";
-import Git from "../assets/Images/icons8-git-96.png";
-import Figma from "../assets/Images/figma_5968705.png";
-import VsCode from "../assets/Images/icons8-vs-code-96.png";
+import { Linkedin, Github, Mail, Download } from "lucide-react";
 
-const skills = [
-  { name: "JavaScript", img: JsLogo },
-  { name: "React", img: ReactLogo },
-  { name: "Node.js", img: NodeLogo },
-  { name: "Tailwind CSS", img: TailwindLogo },
-  { name: "HTML", img: HtmlLogo },
-  { name: "CSS", img: CssLogo },
-  { name: "Python", img: python },
-  { name: "C#", img: CSharp },
-  { name: "Bootstrap", img: bootstrap },
-  { name: "Express.js", img: Express },
-  { name: "MongoDB", img: MongoDB },
-  { name: "Git", img: Git },
-  { name: "Figma", img: Figma },
-  { name: "VS Code", img: VsCode },
-];
-
-const designProcess = [
-  {
-    step: "01. Requirements & Planning",
-    desc: "Gather project requirements, define goals, and plan milestones for both frontend and backend development.",
-  },
-  {
-    step: "02. UI/UX Design",
-    desc: "Design wireframes and high-fidelity mockups focusing on intuitive user experiences and responsive layouts.",
-  },
-  {
-    step: "03. Frontend Development",
-    desc: "Build dynamic, responsive UIs using React, Tailwind CSS, and other modern web technologies.",
-  },
-  {
-    step: "04. Backend Development",
-    desc: "Implement APIs, databases, and server logic using Node.js, Express, and MongoDB or SQL.",
-  },
-  {
-    step: "05. Testing & Deployment",
-    desc: "Perform unit testing, integration testing, and deploy the full-stack app using CI/CD pipelines or platforms like Vercel/Render.",
-  },
-];
-
-const contactInfo = {
-  email: "ajaylakhara748@gmail.com",
-  linkedIn: "https://www.linkedin.com/in/ajay-lakhara-9159b0190/",
-  Github: "https://github.com/Ajaylakhara",
-  resume: "/Ajay_Lakhara_Resume.pdf",
-};
-
-const About = ({ isDark = false }) => {
+const About = () => {
   return (
-    <motion.section className="py-20 min-h-screen transition-colors duration-300">
-      <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-16"
-        >
-          <h1
-            className={`text-5xl font-extrabold leading-tight ${
-              isDark
-                ? "bg-gradient-to-r from-gray-900 to-gray-400 bg-clip-text text-transparent"
-                : "bg-gradient-to-r from-gray-100 to-gray-600 bg-clip-text text-transparent"
-            }`}
+    <div className="pt-32 pb-20">
+      <section className="container mx-auto px-6">
+        <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+          {/* Profile Card */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="md:col-span-1"
           >
-            A Full-Stack Developer & UI/UX Designer
-          </h1>
-          <p
-            className={`mt-4 text-xl py-2 mx-auto ${
-              isDark ? "text-gray-600" : "text-gray-300"
-            }`}
-          >
-            I'm Ajay Lakhara, a detail-oriented Full Stack Developer and UI/UX
-            designer currently pursuing a Bachelor's degree in Electronics and
-            Communication Engineering. With hands-on experience in both hardware
-            systems and modern web development, I bring a unique blend of
-            engineering knowledge and software development expertise. I
-            specialize in building responsive, scalable web applications using
-            React.js, Tailwind CSS, Node.js, ASP.NET, and MongoDB/SQL Server. My
-            technical skill set is complemented by strong problem-solving
-            abilities, a quick learning mindset, and a proactive approach to
-            tackling complex challenges. I’m enthusiastic about creating
-            efficient digital solutions, collaborating across teams, and
-            continuously growing in the field of software engineering.
-          </p>
-        </motion.div>
+            <div className="bg-surface border border-white/10 rounded-3xl p-8 sticky top-32 overflow-hidden group">
+              <div className="aspect-square w-full rounded-2xl bg-gray-800 mb-6 overflow-hidden relative">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 text-white">
+                   <p className="text-xs uppercase tracking-widest font-bold text-accent mb-1">Developer & Designer</p>
+                   <p className="text-xl font-bold">Ajay Lakhara</p>
+                </div>
+              </div>
+              
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors">
+                  <Mail size={18} />
+                  <span className="text-sm">ajaylakhara748@gmail.com</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-400">
+                   <span className="text-accent text-lg">📍</span>
+                   <span className="text-sm">Ahmedabad, India</span>
+                </div>
+              </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-16"
-        >
-          <h2
-            className={`text-4xl font-bold text-center mb-8 ${
-              isDark ? "text-gray-900" : "text-white"
-            }`}
-          >
-            Skills
-          </h2>
-          <div className="flex flex-wrap justify-center gap-4">
-            {skills.map((skill, index) => (
-              <motion.span
-                key={index}
-                whileHover={{ scale: 1.05 }}
-                className={`px-4 py-2 rounded-full text-sm font-medium shadow-md ${
-                  isDark
-                    ? "bg-gray-900 text-white hover:bg-white hover:text-black"
-                    : "bg-white text-gray-900 hover:bg-black hover:text-white"
-                } transition-colors duration-300`}
-              >
-                <img
-                  src={skill.img}
-                  alt={skill.name}
-                  width="20"
-                  height="30"
-                  className="inline mr-2"
-                />
-                {skill.name}
-              </motion.span>
-            ))}
-          </div>
-        </motion.div>
+              <div className="flex gap-4">
+                <a href="https://linkedin.com/in/ajay-lakhara-9159b0190/" target="_blank" className="p-3 bg-background border border-white/10 rounded-xl text-gray-400 hover:text-accent hover:border-accent transition-all">
+                  <Linkedin size={20} />
+                </a>
+                <a href="https://github.com/Ajaylakhara" target="_blank" className="p-3 bg-background border border-white/10 rounded-xl text-gray-400 hover:text-accent hover:border-accent transition-all">
+                  <Github size={20} />
+                </a>
+                <a href="/Ajay_Lakhara_Resume.pdf" download className="flex-grow flex items-center justify-center gap-2 py-3 bg-white text-black rounded-xl font-bold hover:bg-gray-200 transition-all">
+                  <Download size={18} /> Resume
+                </a>
+              </div>
+            </div>
+          </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mb-16"
-        >
-          <h2
-            className={`text-4xl font-bold text-center mb-8 ${
-              isDark ? "text-black" : "text-white"
-            }`}
-          >
-            My Web Developer Process
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {designProcess.map((item, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.03 }}
-                className={`p-6 rounded-xl shadow-lg ${
-                  isDark ? "bg-black" : "bg-white"
-                }`}
-              >
-                <h3
-                  className={`text-xl font-semibold ${
-                    isDark ? "text-white" : "text-black"
-                  } mb-2`}
-                >
-                  {item.step}
-                </h3>
-                <p className={isDark ? "text-gray-300" : "text-gray-600"}>
-                  {item.desc}
+          {/* Bio Content */}
+          <div className="md:col-span-2 space-y-12">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <h1 className="text-4xl md:text-6xl font-extrabold mb-8 tracking-tight text-gray-900 leading-tight">
+                Combining design thinking <br /> with <span className="text-[#FF6321]">production-grade React.</span>
+              </h1>
+              <div className="space-y-6 text-gray-600 text-lg leading-relaxed">
+                <p>
+                  I am a hybrid UI/UX Developer and Frontend Engineer dedicated to turning complex user needs into highly engaging, intuitive, and performant web products. Currently, I work as a UI/UX Developer at Decent Infoways, bridging Figma design systems with responsive code to deliver unified visual architectures.
                 </p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+                <p>
+                  My engineering background provides a solid systems foundation, allowing me to approach frontend architectures, component structures, and state management with structural discipline. By combining standard UX design methodologies with advanced frontend optimizations, I ensure every pixel serves a purpose and every interaction feels fluid.
+                </p>
+                <p>
+                  Whether I'm wireframing highly interactive user flows in Figma, tuning React render loops for smooth performance, or managing client API pipelines, I remain laser-focused on accessibility, search engine optimization, and pixel-perfection.
+                </p>
+              </div>
+            </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="mb-16 text-center"
-        >
-          <h2
-            className={`text-6xl font-semibold mb-4 ${
-              isDark ? "text-gray-900" : "text-white"
-            }`}
-          >
-            Contact Me
-          </h2>
-          <div className="mt-6 flex justify-center gap-4">
-            <a
-              href={`mailto:${contactInfo.email}`}
-              className={`text-2xl ${
-                isDark
-                  ? "text-gray-500 hover:text-gray-200"
-                  : "text-gray-300 hover:text-gray-900"
-              } transition-colors duration-300`}
-            >
-              {" "}
-              Email
-            </a>
-            <a
-              href={contactInfo.linkedIn}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`text-2xl ${
-                isDark
-                  ? "text-gray-500 hover:text-gray-200"
-                  : "text-gray-300 hover:text-gray-900"
-              } transition-colors duration-300`}
-            >
-              LinkedIn
-            </a>
-            <a
-              href={contactInfo.Github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`text-2xl ${
-                isDark
-                  ? "text-gray-500 hover:text-gray-200"
-                  : "text-gray-300 hover:text-gray-900"
-              } transition-colors duration-300`}
-            >
-              GitHub
-            </a>
+            <div className="grid grid-cols-2 gap-8 py-8 border-t border-gray-200">
+              <div>
+                <h3 className="font-bold mb-4 text-[#FF6321] uppercase tracking-widest text-xs">Education</h3>
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-gray-900 font-semibold text-sm">B.E. in Electronics & Communication</p>
+                    <p className="text-xs text-gray-500">HG Engineering College (Completed 2025)</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-900 font-semibold text-sm">Diploma in ECE</p>
+                    <p className="text-xs text-gray-500">Government Polytechnic (Completed 2021)</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h3 className="font-bold mb-4 text-[#FF6321] uppercase tracking-widest text-xs">Experience</h3>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-gray-900 font-semibold text-sm">UI/UX Developer</p>
+                    <p className="text-xs text-gray-500">Decent Infoways (Sep 2025 - Present)</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-900 font-semibold text-sm">Web Developer Intern</p>
+                    <p className="text-xs text-gray-500">InfoElegant Solutions (Jan 2025 - Apr 2025)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="mt-6 flex text-xl justify-center gap-4">
-            <a
-              href={contactInfo.resume}
-              download="Ajay_Lakhara_Resume.pdf"
-              className={`px-6 py-3 ${isDark ? "bg-white text-black hover:bg-black hover:text-white" : "bg-black  text-white hover:bg-white hover:text-black "} rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400`}
-            >
-              Download Resume
-            </a>
-          </div>
-        </motion.div>
-      </div>
-    </motion.section>
+        </div>
+      </section>
+    </div>
   );
 };
 
