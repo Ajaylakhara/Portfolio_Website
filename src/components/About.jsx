@@ -1,7 +1,47 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { Layers, Brain, Zap } from "lucide-react";
 import ProfileCard from "./ProfileCard";
+
+const Counter = ({ value }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const [count, setCount] = useState(0);
+
+  const numericString = value.replace(/[^0-9]/g, "");
+  const numericValue = parseInt(numericString, 10) || 0;
+  const suffix = value.replace(/[0-9]/g, "");
+
+  useEffect(() => {
+    if (isInView) {
+      let startTime = null;
+      const duration = 2000; // 2 seconds
+
+      const step = (timestamp) => {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+
+        // easeOutQuad easing
+        const easeProgress = progress * (2 - progress);
+
+        setCount(Math.floor(easeProgress * numericValue));
+
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+
+      window.requestAnimationFrame(step);
+    }
+  }, [isInView, numericValue]);
+
+  return (
+    <span ref={ref}>
+      {count}
+      {suffix}
+    </span>
+  );
+};
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -83,7 +123,9 @@ export default function About() {
               <div className="grid grid-cols-3 gap-4 py-6 border-y border-gray-200/60 my-2">
                 {stats.map((stat, index) => (
                   <div key={index} className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-extrabold text-[#060612] tracking-tight">{stat.value}</span>
+                    <span className="text-2xl md:text-3xl font-extrabold text-[#060612] tracking-tight">
+                      <Counter value={stat.value} />
+                    </span>
                     <span className="text-xs md:text-sm text-gray-500 font-medium leading-snug mt-1">{stat.label}</span>
                   </div>
                 ))}

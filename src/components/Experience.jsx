@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Briefcase, GraduationCap, ChevronDown, Award, AlertCircle, Settings, CheckCircle2 } from "lucide-react";
 
 const timelineData = [
@@ -73,20 +73,56 @@ const timelineData = [
 
 const Experience = () => {
   const [expandedCard, setExpandedCard] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const timelineRef = useRef(null);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const toggleExpand = (id) => {
     setExpandedCard(expandedCard === id ? null : id);
   };
 
+  // Track scroll progress through the timeline container
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start end", "end end"]
+  });
+
+  const scaleY = useTransform(scrollYProgress, [0, 0.95], [0, 1]);
+
+  const cardVariants = {
+    hidden: (isEven) => ({
+      opacity: 0,
+      x: isMobile ? 35 : (isEven ? -60 : 60),
+      y: 20,
+    }),
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 80,
+        damping: 15,
+        mass: 0.7
+      }
+    }
+  };
+
   return (
-    <section 
-      id="experience" 
+    <section
+      id="experience"
       className="py-24 md:py-32 bg-[#F5F4F3] text-[#060612] overflow-hidden relative border-b border-gray-200/50"
     >
       <div className="absolute inset-0 bg-noise pointer-events-none"></div>
 
       <div className="max-w-[1100px] mx-auto px-6 relative z-10">
-        
+
         {/* Section Header */}
         <div className="text-center mb-20">
           <span className="inline-block uppercase tracking-widest text-[#FF6321] text-xs font-bold bg-[#FF6321]/10 px-3 py-1 rounded-full mb-3">
@@ -101,11 +137,18 @@ const Experience = () => {
         </div>
 
         {/* Timeline Content */}
-        <div className="relative w-full">
-          
-          {/* Vertical Track Line */}
-          <div 
-            className="absolute left-6 md:left-1/2 -translate-x-1/2 top-2 bottom-2 w-[2px] bg-gray-200/80" 
+        <div ref={timelineRef} className="relative w-full">
+
+          {/* Vertical Track Line (Background) */}
+          <div
+            className="absolute left-6 md:left-1/2 -translate-x-1/2 top-2 bottom-2 w-[2px] bg-gray-200/60"
+            aria-hidden="true"
+          />
+
+          {/* Vertical Track Line (Animated Progress) */}
+          <motion.div
+            style={{ scaleY }}
+            className="absolute left-6 md:left-1/2 -translate-x-1/2 top-2 bottom-2 w-[2px] bg-[#FF6321] origin-top z-0"
             aria-hidden="true"
           />
 
@@ -115,31 +158,47 @@ const Experience = () => {
               const IconComponent = item.icon;
               const isExpanded = expandedCard === item.id;
               const isEven = index % 2 === 0;
-              
+              const isCardActive = isExpanded;
+
               return (
-                <div 
-                  key={item.id} 
+                <div
+                  key={item.id}
                   className="relative grid grid-cols-1 md:grid-cols-2 items-center w-full"
                 >
-                  
+
                   {/* Timeline Bullet Node Icon */}
-                  <div className="absolute left-6 md:left-1/2 -translate-x-1/2 top-6 w-8 h-8 rounded-full bg-white border-2 border-gray-200 shadow-sm flex items-center justify-center text-gray-500 z-10">
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ type: "spring", stiffness: 150, damping: 12, delay: 0.1 }}
+                    animate={{
+                      scale: isCardActive ? 1.2 : 1,
+                      borderColor: isCardActive ? "#FF6321" : "#E5E7EB",
+                      backgroundColor: isCardActive ? "#FF6321" : "#FFFFFF",
+                      color: isCardActive ? "#FFFFFF" : "#69686E",
+                    }}
+                    className="absolute left-6 md:left-1/2 -translate-x-1/2 top-6 w-9 h-9 rounded-full border-2 shadow-sm flex items-center justify-center z-10 transition-shadow duration-300"
+                    style={{
+                      boxShadow: isCardActive ? "0 0 15px rgba(255, 99, 33, 0.4)" : "0 2px 4px rgba(6, 6, 18, 0.04)"
+                    }}
+                  >
                     <IconComponent size={14} />
-                  </div>
+                  </motion.div>
 
                   {/* alternating cards wrapper layout */}
-                  <div className={`flex w-full ${
-                    isEven 
-                      ? "md:justify-end justify-start pl-16 md:pl-0 md:pr-16 justify-self-end" 
+                  <div className={`flex w-full ${isEven
+                      ? "md:justify-end justify-start pl-16 md:pl-0 md:pr-16 justify-self-end"
                       : "md:justify-start justify-start pl-16 md:pl-16 justify-self-start md:col-start-2"
-                  }`}>
+                    }`}>
                     {/* Experience Card */}
                     <motion.div
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-100px" }}
-                      transition={{ duration: 0.5 }}
-                      className="w-full max-w-[480px] bg-white rounded-3xl p-6 md:p-8 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 relative group"
+                      custom={isEven}
+                      variants={cardVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true, margin: "-80px" }}
+                      className="w-full max-w-[480px] bg-white rounded-3xl p-6 md:p-8 border border-gray-100/80 shadow-sm hover:shadow-md transition-all duration-300 relative group cursor-default"
                     >
                       {/* Header Row: Role, Duration, Badge */}
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
@@ -248,7 +307,7 @@ const Experience = () => {
 
                     </motion.div>
                   </div>
-                  
+
                 </div>
               );
             })}

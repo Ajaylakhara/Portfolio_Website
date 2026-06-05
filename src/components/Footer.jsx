@@ -8,7 +8,7 @@ export default function Footer({ isDark }) {
         <div className="text-gray-600 text-sm font-medium">
           © {new Date().getFullYear()} Ajay Lakhara. All rights reserved.
         </div>
-        
+
         <div className="flex gap-6 justify-center">
           <a
             href="https://github.com/Ajaylakhara"

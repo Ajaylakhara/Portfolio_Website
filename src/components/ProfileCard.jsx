@@ -17,12 +17,12 @@ const ProfileCard = () => {
       <div className="absolute inset-0 opacity-[0.03] bg-[url('data:image/svg+xml,%3Csvg width=%2220%22 height=%2220%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath d=%22M0 0h2v2H0V0zm4 4h2v2H4V4zm4 4h2v2H8V8zm4 4h2v2h-2v-2zm4 4h2v2h-2v-2z%22 fill=%22%23ffffff%22 fill-rule=%22evenodd%22/%3E%3C/svg%3E')]"></div>
 
       <div className="relative z-10 flex flex-col h-full w-full">
-        
+
         {/* Top Content: Large Image */}
         <div className="w-full h-[75%] relative">
-          <img 
-            src={profileImg} 
-            alt="Ajay Lakhara" 
+          <img
+            src={profileImg}
+            alt="Ajay Lakhara"
             className="w-full h-full object-cover object-top opacity-95"
             loading="eager"
             fetchpriority="high"

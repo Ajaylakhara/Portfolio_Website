@@ -27,8 +27,8 @@ const FeaturedCaseStudy = () => {
   };
 
   return (
-    <section 
-      id="case-study" 
+    <section
+      id="case-study"
       className="py-24 relative overflow-hidden bg-white transition-colors duration-300"
     >
       {/* Background Glow Elements */}
@@ -36,9 +36,9 @@ const FeaturedCaseStudy = () => {
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
-        
+
         {/* SECTION HEADER - LEFT ALIGNED */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -48,7 +48,7 @@ const FeaturedCaseStudy = () => {
           <span className="text-sm text-[#ff6a00] uppercase tracking-widest font-semibold bg-[#ff6a00]/10 px-3 py-1.5 rounded-full inline-block">
             Featured Case Study
           </span>
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -65,7 +65,7 @@ const FeaturedCaseStudy = () => {
 
         {/* MAIN 2-COLUMN GRID LAYOUT */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start lg:items-center">
-          
+
           {/* LEFT SIDE: LAYERED IMAGE MOCKUP */}
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
@@ -80,15 +80,15 @@ const FeaturedCaseStudy = () => {
             {/* Glass Card Container with Shadow Depth */}
             <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border border-black/5 bg-white p-2 transition-all duration-700 group-hover:scale-[1.02] group-hover:rotate-1">
               <div className="relative w-full h-full rounded-[14px] overflow-hidden bg-[#fafafa] border border-gray-100">
-                <img 
-                  src={HospitalImg} 
-                  alt="Hospital Management System Interface" 
+                <img
+                  src={HospitalImg}
+                  alt="Hospital Management System Interface"
                   className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                 />
                 {/* Soft Dynamic Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity duration-500" />
-                
+
                 {/* Interactive Tech Stack Overlay in Image corner */}
                 <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-1.5 opacity-90">
                   <span className="px-2 py-0.5 bg-black/60 backdrop-blur-md text-white text-[10px] uppercase font-bold tracking-wider rounded border border-white/10">Enterprise</span>
@@ -106,7 +106,7 @@ const FeaturedCaseStudy = () => {
             viewport={{ once: true }}
             className="w-full max-w-[520px] mx-auto lg:mx-0 space-y-8 text-left"
           >
-            
+
             {/* Project Title */}
             <motion.div variants={itemVariants} className="space-y-2">
               <h3 className="text-2xl md:text-3xl font-bold text-[#111827] tracking-tight">
@@ -116,7 +116,7 @@ const FeaturedCaseStudy = () => {
 
             {/* STORYTELLING THREE-PART FLOW */}
             <motion.div variants={itemVariants} className="space-y-4">
-              
+
               {/* Problem Block */}
               <div className="flex gap-4 p-4 rounded-xl bg-red-500/5 border border-red-500/10 hover:border-red-500/20 transition-colors duration-300">
                 <div className="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500 flex-shrink-0">
@@ -187,7 +187,7 @@ const FeaturedCaseStudy = () => {
               </span>
               <div className="flex flex-wrap gap-2">
                 {["React 19", "ASP.NET Core", "SQL Server", "Tailwind CSS v4", "Framer Motion"].map((tag, idx) => (
-                  <span 
+                  <span
                     key={idx}
                     className="px-3 py-1.5 text-xs font-medium rounded-md bg-white text-gray-700 border border-gray-200 shadow-xs"
                   >
@@ -204,7 +204,7 @@ const FeaturedCaseStudy = () => {
                 { number: "40%", label: "Faster Queueing" },
                 { number: "5k+", label: "EHR Managed" }
               ].map((stat, idx) => (
-                <div 
+                <div
                   key={idx}
                   className="bg-white p-3.5 rounded-xl text-center border border-[#e7e2dd] shadow-xs transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 hover:border-[#ff6a00]/30"
                 >
@@ -216,15 +216,15 @@ const FeaturedCaseStudy = () => {
 
             {/* CTA BUTTONS ROW */}
             <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4 pt-4">
-              <button 
+              <button
                 onClick={() => window.open("https://hospital-demo.ajaylakhara.com", "_blank")}
                 className="inline-flex items-center gap-2 bg-[#FF6321] hover:bg-[#e05d00] text-white px-6 py-3 rounded-xl font-semibold shadow-lg shadow-[#FF6321]/20 hover:shadow-[0_0_20px_rgba(255,106,0,0.4)] hover:shadow-[#FF6321]/40 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 cursor-pointer"
               >
                 <span>Live Demo</span>
                 <ArrowUpRight size={18} />
               </button>
-              
-              <button 
+
+              <button
                 onClick={() => window.open("https://github.com/Ajaylakhara/HospitalManagement", "_blank")}
                 className="inline-flex items-center gap-2 border border-gray-300 text-gray-700 hover:text-[#111827] px-6 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 cursor-pointer"
               >

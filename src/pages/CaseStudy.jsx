@@ -30,7 +30,7 @@ const CaseStudy = () => {
   return (
     <div className="pt-32 pb-24 bg-[#F5F4F3] min-h-screen text-[#060612] selection:bg-[#FF6321]/30 selection:text-[#FF6321]">
       <div className="max-w-[1200px] mx-auto px-6">
-        
+
         {/* Back Link Breadcrumb */}
         <motion.div
           initial={{ opacity: 0, x: -10 }}
@@ -38,11 +38,11 @@ const CaseStudy = () => {
           transition={{ duration: 0.5 }}
           className="mb-8"
         >
-          <Link 
-            to="/projects" 
+          <Link
+            to="/projects"
             className="inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-[#FF6321] transition-colors duration-300"
           >
-            <ArrowLeft size={14} strokeWidth={2.5} /> 
+            <ArrowLeft size={14} strokeWidth={2.5} />
             Back to Showcase
           </Link>
         </motion.div>
@@ -84,12 +84,12 @@ const CaseStudy = () => {
         {/* 2. DUAL COLUMN STRUCTURE (STORY vs SIDEBAR) */}
         {/* ========================================================================= */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-start">
-          
+
           {/* LEFT: STORYTELLING BLOCKS (2/3 Col) */}
           <div className="lg:col-span-2 space-y-12 text-left">
-            
+
             {/* PROBLEM block */}
-            <motion.section 
+            <motion.section
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -115,7 +115,7 @@ const CaseStudy = () => {
             </motion.section>
 
             {/* PERSONA / AUDIENCE block */}
-            <motion.section 
+            <motion.section
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -141,7 +141,7 @@ const CaseStudy = () => {
             </motion.section>
 
             {/* GOAL block */}
-            <motion.section 
+            <motion.section
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -167,7 +167,7 @@ const CaseStudy = () => {
             </motion.section>
 
             {/* SOLUTION block */}
-            <motion.section 
+            <motion.section
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -193,7 +193,7 @@ const CaseStudy = () => {
             </motion.section>
 
             {/* IMPACT block */}
-            <motion.section 
+            <motion.section
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
