@@ -1,8 +1,54 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { Check, ArrowUpRight, Github, AlertTriangle, Lightbulb, TrendingUp } from "lucide-react";
 const baseUrl = import.meta.env.BASE_URL || "/";
 const MedicareHubImg = `${baseUrl}optimized/projecting/medicare.webp`;
+
+const Counter = ({ value, duration = 2 }) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    const match = value.match(/^(\d+)(.*)$/);
+    if (!match) {
+      setCount(value);
+      return;
+    }
+
+    const target = parseInt(match[1], 10);
+    let startTime;
+
+    const animateCount = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
+      const easedProgress = progress * (2 - progress);
+      const currentCount = Math.floor(easedProgress * target);
+      
+      setCount(currentCount);
+
+      if (progress < 1) {
+        requestAnimationFrame(animateCount);
+      } else {
+        setCount(target);
+      }
+    };
+
+    requestAnimationFrame(animateCount);
+  }, [isInView, value, duration]);
+
+  const match = value.match(/^(\d+)(.*)$/);
+  const suffix = match ? match[2] : "";
+
+  return (
+    <span ref={ref} className="inline-flex">
+      {match ? count : value}
+      {suffix}
+    </span>
+  );
+};
 
 const FeaturedCaseStudy = () => {
   // Animation variants for container stagger
@@ -208,7 +254,9 @@ const FeaturedCaseStudy = () => {
                   key={idx}
                   className="bg-white p-3.5 rounded-xl text-center border border-[#e7e2dd] shadow-xs transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 hover:border-[#ff6a00]/30"
                 >
-                  <div className="text-xl md:text-2xl font-black text-[#ff6a00] tracking-tight">{stat.number}</div>
+                  <div className="text-xl md:text-2xl font-black text-[#ff6a00] tracking-tight">
+                    <Counter value={stat.number} />
+                  </div>
                   <div className="text-[10px] md:text-xs font-bold text-[#69686e] mt-1 uppercase tracking-wider">{stat.label}</div>
                 </div>
               ))}

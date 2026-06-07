@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Github, X } from "lucide-react";
 import { projects } from "../data/projects";
 
-const categories = ["All", "UI Design", "Mobile App", "Branding", "Web Design"];
+const categories = ["All", "UI Design", "Branding", "Web Design"];
 
 const Projects = ({ isDark = false }) => {
   const navigate = useNavigate();
@@ -69,7 +69,7 @@ const Projects = ({ isDark = false }) => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
           className="flex flex-wrap justify-center gap-3 relative z-20"
         >
           {categories.map((cat) => (
@@ -94,7 +94,7 @@ const Projects = ({ isDark = false }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.5}}
           className="relative w-full flex flex-col gap-6 overflow-hidden pb-10"
         >
           {/* Top Marquee */}
