@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useMotionValueEvent, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent, useTransform, useMotionValue, animate } from 'framer-motion';
 
 const steps = [
   {
@@ -38,10 +38,10 @@ const StepNode = ({ step, isActive, ringRadius, wheelRotation }) => {
   const stepSpacing = 35; // degrees between steps
   const angle = (step.id - 3) * stepSpacing;
   const angleRad = (angle * Math.PI) / 180;
-  
+
   const trackRadius = ringRadius * 1.05;
   const nodeRadius = trackRadius - 5;
-  
+
   // Calculate relative X and Y positions inside the wheel container
   const xOff = nodeRadius * Math.sin(angleRad);
   const yOff = -nodeRadius * Math.cos(angleRad);
@@ -74,17 +74,17 @@ const StepNode = ({ step, isActive, ringRadius, wheelRotation }) => {
             <span className="absolute bottom-[115%] text-[10px] font-bold text-[#69686e] tracking-wider uppercase whitespace-nowrap">
               Step
             </span>
-            <div 
+            <div
               className="w-12 h-12 md:w-14 md:h-14 bg-[#ff6321] rounded-[8px] flex items-center justify-center text-white font-bold text-lg md:text-xl border border-[#cf4e17]"
-              style={{ 
-                boxShadow: "0px 4px 10px rgba(255, 99, 33, 0.25), inset 0px 1px 1px rgba(255,255,255,0.15)" 
+              style={{
+                boxShadow: "0px 4px 10px rgba(255, 99, 33, 0.25), inset 0px 1px 1px rgba(255,255,255,0.15)"
               }}
             >
               0{step.id}
             </div>
           </div>
         ) : (
-          <div 
+          <div
             className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-[8px] flex items-center justify-center text-[#69686e] font-bold text-sm md:text-base border border-[#e7e2dd] transition-shadow duration-300 hover:shadow-md"
             style={{ boxShadow: "0px 2.5px 6px 0px rgba(6, 6, 18, 0.06)" }}
           >
@@ -126,7 +126,7 @@ const DesktopWorkProcess = () => {
     else if (latest < 0.625) step = 3;
     else if (latest < 0.875) step = 4;
     else step = 5;
-    
+
     if (step !== activeStep) {
       setActiveStep(step);
     }
@@ -134,17 +134,105 @@ const DesktopWorkProcess = () => {
 
   const currentStepData = steps.find(s => s.id === activeStep);
   const stepSpacing = 35; // degrees between steps
-  const wheelRotation = useTransform(scrollYProgress, [0, 1], [70, -70]);
+
+  // Motion value for snapping wheel rotation
+  const wheelRotation = useMotionValue((3 - activeStep) * 35);
+
+  // Animate the wheel rotation smoothly when activeStep changes
+  useEffect(() => {
+    const targetRotation = (3 - activeStep) * 35;
+    const controls = animate(wheelRotation, targetRotation, {
+      type: "spring",
+      stiffness: 85,
+      damping: 18,
+      mass: 0.8
+    });
+    return () => controls.stop();
+  }, [activeStep, wheelRotation]);
+
+  // Smooth scroll snapping listener to snap to steps on user scroll
+  useEffect(() => {
+    let scrollTimeout = null;
+    let isSnapping = false;
+    let isUserScrolling = false;
+
+    const setUserScrolling = () => {
+      isUserScrolling = true;
+    };
+
+    const handleScroll = () => {
+      if (!containerRef.current || isSnapping) return;
+      if (!isUserScrolling) return; // Only snap if scroll was user-initiated
+
+      const container = containerRef.current;
+      const rect = container.getBoundingClientRect();
+      const containerTop = window.scrollY + rect.top;
+      const containerHeight = container.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      const totalScrollable = containerHeight - viewportHeight;
+
+      const currentScrollY = window.scrollY;
+      const relativeScroll = currentScrollY - containerTop;
+
+      // Only snap if we are within the scrolling zone (with safety margins)
+      const safetyMargin = 50; // pixels
+      if (relativeScroll < -safetyMargin || relativeScroll > totalScrollable + safetyMargin) {
+        isUserScrolling = false;
+        return;
+      }
+
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+
+      scrollTimeout = setTimeout(() => {
+        const stepHeight = 0.5 * viewportHeight;
+        const rawStep = relativeScroll / stepHeight;
+        const roundedStep = Math.round(rawStep);
+
+        const targetStepIndex = Math.max(0, Math.min(4, roundedStep));
+        const targetScrollY = containerTop + targetStepIndex * stepHeight;
+
+        if (Math.abs(currentScrollY - targetScrollY) > 5) {
+          isSnapping = true;
+          window.scrollTo({
+            top: targetScrollY,
+            behavior: "smooth"
+          });
+
+          setTimeout(() => {
+            isSnapping = false;
+            isUserScrolling = false;
+          }, 600);
+        } else {
+          isUserScrolling = false;
+        }
+      }, 150);
+    };
+
+    window.addEventListener("wheel", setUserScrolling, { passive: true });
+    window.addEventListener("touchmove", setUserScrolling, { passive: true });
+    window.addEventListener("keydown", setUserScrolling, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("wheel", setUserScrolling);
+      window.removeEventListener("touchmove", setUserScrolling);
+      window.removeEventListener("keydown", setUserScrolling);
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+    };
+  }, []);
 
   return (
     <section id="process" ref={containerRef} className="relative h-[300vh] bg-[#f9f9f9] text-gray-900 font-sans">
       {/* Sticky container stays in viewport as user scrolls */}
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
-        
+
         <div className="max-w-[1200px] w-full mx-auto px-4 md:px-8 text-center relative z-10 pt-10">
-          
+
           {/* Header */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -162,7 +250,7 @@ const DesktopWorkProcess = () => {
 
           {/* Ring Dial Container */}
           <div className="relative w-full h-[500px] mx-auto overflow-hidden flex justify-center">
-            
+
             {/* The Track (Circular border line) */}
             <div
               className="absolute pointer-events-none rounded-full"
@@ -179,7 +267,7 @@ const DesktopWorkProcess = () => {
             />
 
             {/* Blurred Overlay at bottom to smoothly fade the arc into the background */}
-            <div 
+            <div
               className="absolute bottom-0 left-0 w-full h-[150px] pointer-events-none z-10"
               style={{
                 backgroundColor: "#f9f9f9",
@@ -230,17 +318,17 @@ const DesktopWorkProcess = () => {
                   <p className="text-[#69686e] text-base leading-relaxed mb-6 max-w-[340px]">
                     {currentStepData.description}
                   </p>
-                  
+
                   <div className="text-[11px] font-bold tracking-[0.15em] text-[#69686e] uppercase mb-8 border-b border-dashed border-[rgba(6,6,18,0.1)] pb-4 px-4 w-full flex items-center justify-center gap-2">
                     <span>{currentStepData.subLabel.split(' • ')[0]}</span>
                     <div className="w-[4px] h-[4px] rounded-full bg-[#69686e]"></div>
                     <span>{currentStepData.subLabel.split(' • ')[1]}</span>
                   </div>
-                  
+
                   <a href="#contact" className="inline-block px-8 py-3.5 bg-[#ff6321] text-white font-medium rounded-[8px] transition-all transform hover:-translate-y-0.5 hover:shadow-lg"
-                     style={{
-                       boxShadow: "0px 0px 0px 1px #cf4e17, inset 0px 1.4px 1px 0px rgba(255, 255, 255, 0.08), 0px 1.4px 4px 0px rgba(6, 6, 18, 0.3)"
-                     }}>
+                    style={{
+                      boxShadow: "0px 0px 0px 1px #cf4e17, inset 0px 1.4px 1px 0px rgba(255, 255, 255, 0.08), 0px 1.4px 4px 0px rgba(6, 6, 18, 0.3)"
+                    }}>
                     Start your project
                   </a>
                 </motion.div>
@@ -249,18 +337,17 @@ const DesktopWorkProcess = () => {
               {/* Pagination */}
               <div className="mt-8 flex flex-col items-center">
                 <div className="flex gap-1.5 items-center justify-center">
-                   <span className="text-xs font-bold text-[#69686e]">0{activeStep}</span>
-                   <span className="text-xs font-bold text-[#69686e]">/ 0{steps.length}</span>
+                  <span className="text-xs font-bold text-[#69686e]">0{activeStep}</span>
+                  <span className="text-xs font-bold text-[#69686e]">/ 0{steps.length}</span>
                 </div>
                 <div className="flex items-center gap-1.5 mt-3">
                   {steps.map(step => (
-                    <div 
-                      key={step.id} 
-                      className={`transition-all duration-300 rounded-full ${
-                        activeStep === step.id 
-                          ? 'w-1.5 h-1.5 bg-[#ff6321]' 
+                    <div
+                      key={step.id}
+                      className={`transition-all duration-300 rounded-full ${activeStep === step.id
+                          ? 'w-1.5 h-1.5 bg-[#ff6321]'
                           : 'w-1.5 h-1.5 bg-[rgb(238,236,234)] shadow-[inset_0_1px_1px_rgba(6,6,18,0.18)]'
-                      }`}
+                        }`}
                     />
                   ))}
                 </div>
@@ -279,7 +366,7 @@ const MobileWorkProcess = () => {
   return (
     <section className="bg-[#f9f9f9] text-gray-900 py-20 px-6">
       <div className="max-w-md mx-auto space-y-12">
-        
+
         {/* Header */}
         <div className="text-center mb-10">
           <div className="flex items-center justify-center gap-2 mb-3 text-[#69686e] text-[10px] font-bold tracking-[0.2em] uppercase">
@@ -295,7 +382,7 @@ const MobileWorkProcess = () => {
         {/* Steps List */}
         <div className="space-y-6">
           {steps.map((step) => (
-            <motion.div 
+            <motion.div
               key={step.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -318,8 +405,8 @@ const MobileWorkProcess = () => {
 
         {/* CTA */}
         <div className="pt-4 text-center">
-          <a 
-            href="#contact" 
+          <a
+            href="#contact"
             className="inline-block w-full py-4 bg-[#ff6321] text-white font-bold rounded-xl text-center shadow-lg shadow-[#ff6321]/20 hover:bg-[#e05d00] transition-all duration-300 hover-glow-orange"
             style={{
               boxShadow: "0px 0px 0px 1px #cf4e17, inset 0px 1.4px 1px 0px rgba(255, 255, 255, 0.08)"

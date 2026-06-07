@@ -18,19 +18,19 @@ const About = () => {
               <div className="aspect-square w-full rounded-2xl bg-gray-800 mb-6 overflow-hidden relative">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
-                   <p className="text-xs uppercase tracking-widest font-bold text-accent mb-1">Developer & Designer</p>
-                   <p className="text-xl font-bold">Ajay Lakhara</p>
+                  <p className="text-xs uppercase tracking-widest font-bold text-accent mb-1">Developer & Designer</p>
+                  <p className="text-xl font-bold">Ajay Lakhara</p>
                 </div>
               </div>
-              
+
               <div className="space-y-4 mb-8">
                 <div className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors">
                   <Mail size={18} />
                   <span className="text-sm">ajaylakhara748@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-3 text-gray-400">
-                   <span className="text-accent text-lg">📍</span>
-                   <span className="text-sm">Ahmedabad, India</span>
+                  <span className="text-accent text-lg">📍</span>
+                  <span className="text-sm">Ahmedabad, India</span>
                 </div>
               </div>
 

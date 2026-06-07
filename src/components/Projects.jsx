@@ -11,8 +11,8 @@ const Projects = ({ isDark = false }) => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [lightboxProject, setLightboxProject] = useState(null);
 
-  const filteredProjects = activeCategory === "All" 
-    ? projects 
+  const filteredProjects = activeCategory === "All"
+    ? projects
     : projects.filter(p => p.category === activeCategory);
 
   const handleCardClick = (id) => {
@@ -48,8 +48,8 @@ const Projects = ({ isDark = false }) => {
     <section id="projects" className="py-32 overflow-hidden relative bg-[#F8F9FA]">
       {/* Container for Header and Filters */}
       <div className="max-w-7xl mx-auto px-6 mb-16 flex flex-col items-center">
-        
-        <motion.div 
+
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -65,7 +65,7 @@ const Projects = ({ isDark = false }) => {
         </motion.div>
 
         {/* Filter Tabs */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -76,11 +76,10 @@ const Projects = ({ isDark = false }) => {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
-                activeCategory === cat
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${activeCategory === cat
                   ? "bg-[#FF6321] text-white shadow-lg shadow-[#FF6321]/30"
                   : "bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900 border border-gray-200/80 shadow-sm"
-              }`}
+                }`}
             >
               {cat}
             </button>
@@ -90,7 +89,7 @@ const Projects = ({ isDark = false }) => {
 
       {/* The Flowing Sliders */}
       <AnimatePresence mode="wait">
-        <motion.div 
+        <motion.div
           key={activeCategory}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -108,9 +107,9 @@ const Projects = ({ isDark = false }) => {
               >
                 <div className="w-full h-full rounded-[24px] overflow-hidden relative">
                   {project.img ? (
-                    <img 
-                      src={project.img} 
-                      alt={project.title} 
+                    <img
+                      src={project.img}
+                      alt={project.title}
                       loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
@@ -199,9 +198,9 @@ const Projects = ({ isDark = false }) => {
               >
                 <div className="w-full h-full rounded-[24px] overflow-hidden relative">
                   {project.img ? (
-                    <img 
-                      src={project.img} 
-                      alt={project.title} 
+                    <img
+                      src={project.img}
+                      alt={project.title}
                       loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />

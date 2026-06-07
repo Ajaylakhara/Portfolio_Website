@@ -14,7 +14,7 @@ const Contact = ({ isDark = false }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setStatus("sending");
-    // Simulate sending
+    // Simulate sending 
     setTimeout(() => {
       setStatus("success");
       setFormData({ name: "", email: "", message: "" });
@@ -27,7 +27,7 @@ const Contact = ({ isDark = false }) => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
-        
+
         {/* Header Block */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -42,11 +42,11 @@ const Contact = ({ isDark = false }) => {
           <h2 className="text-4xl md:text-6xl font-black text-[#111827] tracking-tight leading-tight pt-2">
             Let’s build something <span className="text-[#FF6321]">amazing</span> together
           </h2>
-          
+
           {/* Visible Email */}
           <div className="pt-4">
-            <a 
-              href="mailto:ajaylakhara748@gmail.com" 
+            <a
+              href="mailto:ajaylakhara748@gmail.com"
               className="inline-flex items-center gap-3 text-lg md:text-2xl font-bold text-[#111827] hover:text-[#FF6321] transition-colors duration-300 group"
             >
               <Mail className="text-[#FF6321] group-hover:scale-110 transition-transform duration-300" size={24} />
@@ -134,7 +134,7 @@ const Contact = ({ isDark = false }) => {
                   />
                 </div>
               </div>
-              
+
               <div className="space-y-2">
                 <label className="text-[10px] uppercase tracking-widest text-gray-400 font-bold ml-1">Your Message</label>
                 <textarea

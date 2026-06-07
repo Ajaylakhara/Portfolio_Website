@@ -10,7 +10,7 @@
   --color-secondary: #060612;
   --color-gray-text: #69686E;
   --color-border-gray: #E5E7EB;
-  
+
   /* Gold Palette for Premium Sections */
   --color-gold-shadow: #6e4f00;
   --color-gold-base: #c9a227;
@@ -31,7 +31,12 @@
     font-family: var(--font-sans);
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading);
   }
 }
@@ -42,8 +47,13 @@
   }
 
   @keyframes flow {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
   }
 
   .animate-flow {
@@ -78,31 +88,52 @@
   }
 
   @keyframes spin-clockwise {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
   }
+
   @keyframes spin-counter-clockwise {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(-360deg); }
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(-360deg);
+    }
   }
 
   .animate-spin-clockwise {
     animation: spin-clockwise 40s linear infinite;
   }
+
   .animate-spin-counter-clockwise {
     animation: spin-counter-clockwise 40s linear infinite;
   }
+
   .animate-spin-clockwise-slow {
     animation: spin-clockwise 45s linear infinite;
   }
+
   .animate-spin-counter-clockwise-slow {
     animation: spin-counter-clockwise 45s linear infinite;
   }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0) rotate(var(--tw-rotate, 0deg)); }
-  50% { transform: translateY(-10px) rotate(var(--tw-rotate, 0deg)); }
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--tw-rotate, 0deg));
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(var(--tw-rotate, 0deg));
+  }
 }
 
 .animate-float {
@@ -134,6 +165,7 @@ html {
 .hover-glow-orange {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .hover-glow-orange:hover {
   box-shadow: 0 0 25px rgba(255, 99, 33, 0.5);
 }

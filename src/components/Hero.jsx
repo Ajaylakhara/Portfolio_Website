@@ -25,10 +25,10 @@ const baseUrl = import.meta.env.BASE_URL || "/";
 
 /* ─── Category background design tokens ─── */
 const CATEGORY_BG = {
-  design:      "#FFF1EE",  // warm peach
+  design: "#FFF1EE",  // warm peach
   development: "#EEF4FF",  // cool blue
-  tools:       "#F0FFF4",  // mint green
-  logic:       "#FFFBE6",  // soft yellow
+  tools: "#F0FFF4",  // mint green
+  logic: "#FFFBE6",  // soft yellow
 };
 
 const Typewriter = ({ words }) => {
@@ -90,22 +90,22 @@ const RIGHT_ICONS = [
 
 /* ─── Left ring: Design-focused (6 unique icons) ─── */
 const RING_LEFT_ICONS = [
-  { icon: FiFigma,   label: "UI/UX Design",     category: "design",      bg: CATEGORY_BG.design },
-  { icon: FiLayout,  label: "Responsive Layout", category: "design",      bg: CATEGORY_BG.design },
-  { icon: FiPenTool, label: "Visual Design",     category: "design",      bg: CATEGORY_BG.design },
-  { icon: FiSliders, label: "Design Systems",    category: "design",      bg: CATEGORY_BG.design },
-  { icon: FiEye,     label: "Accessibility",     category: "development", bg: CATEGORY_BG.development },
+  { icon: FiFigma, label: "UI/UX Design", category: "design", bg: CATEGORY_BG.design },
+  { icon: FiLayout, label: "Responsive Layout", category: "design", bg: CATEGORY_BG.design },
+  { icon: FiPenTool, label: "Visual Design", category: "design", bg: CATEGORY_BG.design },
+  { icon: FiSliders, label: "Design Systems", category: "design", bg: CATEGORY_BG.design },
+  { icon: FiEye, label: "Accessibility", category: "development", bg: CATEGORY_BG.development },
   { icon: FiMonitor, label: "Cross-platform UI", category: "development", bg: CATEGORY_BG.development },
 ];
 
 /* ─── Right ring: Development & Tools (6 unique icons) ─── */
 const RING_RIGHT_ICONS = [
-  { icon: FiCode,      label: "Frontend Dev",    category: "development", bg: CATEGORY_BG.development },
-  { icon: FiTerminal,  label: "CLI & DevOps",    category: "tools",       bg: CATEGORY_BG.tools },
-  { icon: FiGitBranch, label: "Version Control", category: "tools",       bg: CATEGORY_BG.tools },
-  { icon: FiZap,       label: "Performance",     category: "logic",       bg: CATEGORY_BG.logic },
-  { icon: FiDatabase,  label: "Backend & DB",    category: "development", bg: CATEGORY_BG.development },
-  { icon: FiPackage,   label: "Build Workflow",  category: "tools",       bg: CATEGORY_BG.tools },
+  { icon: FiCode, label: "Frontend Dev", category: "development", bg: CATEGORY_BG.development },
+  { icon: FiTerminal, label: "CLI & DevOps", category: "tools", bg: CATEGORY_BG.tools },
+  { icon: FiGitBranch, label: "Version Control", category: "tools", bg: CATEGORY_BG.tools },
+  { icon: FiZap, label: "Performance", category: "logic", bg: CATEGORY_BG.logic },
+  { icon: FiDatabase, label: "Backend & DB", category: "development", bg: CATEGORY_BG.development },
+  { icon: FiPackage, label: "Build Workflow", category: "tools", bg: CATEGORY_BG.tools },
 ];
 
 const IconCard = ({ src, bg = "#fff", style = {}, isWhiteIcon = false }) => {
@@ -195,9 +195,9 @@ const CircleArms = React.memo(({ side }) => {
           key={i}
           className="absolute rounded-full"
           style={{
-            width:  r * 2,
+            width: r * 2,
             height: r * 2,
-            top:  -r,
+            top: -r,
             left: -r,
             border: `10px solid rgba(0,0,0,${0.09 - i * 0.02})`,
             background: "transparent",
@@ -234,10 +234,10 @@ const CircleArms = React.memo(({ side }) => {
               pointerEvents: "auto",
             }}
           >
-            <IconCard 
-              src={iconData.src} 
-              bg={iconData.bg} 
-              isWhiteIcon={iconData.isWhiteIcon} 
+            <IconCard
+              src={iconData.src}
+              bg={iconData.bg}
+              isWhiteIcon={iconData.isWhiteIcon}
             />
           </motion.div>
         );
@@ -382,15 +382,15 @@ const Hero = () => {
         style={{ zIndex: 10 }}
       >
         {/* Text & Actions Wrapper */}
-        <div style={{ 
-          display: "flex", 
-          flexDirection: "column", 
-          alignItems: "center", 
-          gap: "24px", 
-          maxWidth: "700px", 
-          margin: "0 auto" 
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "24px",
+          maxWidth: "700px",
+          margin: "0 auto"
         }}>
-          
+
           {/* Badge */}
           <motion.div variants={item}>
             <div style={{
@@ -408,11 +408,15 @@ const Hero = () => {
 
           {/* Heading */}
           <motion.h1 variants={item} style={{
-            fontSize: "clamp(42px, 6vw, 64px)", fontWeight: 700,
+            fontSize: "clamp(32px, 5.5vw, 64px)", fontWeight: 700,
             lineHeight: 1.15, color: "#111827", letterSpacing: "-0.02em",
-            margin: 0
+            margin: 0,
+            textAlign: "center",
+            minHeight: "3.45em"
           }}>
-            Designing Interfaces That People Love to <span style={{ color: "#FF6321" }}><Typewriter words={["Experience", "Explore", "Interact With", "Navigate"]} /></span>
+            Designing Interfaces <br />
+            That People Love to <br />
+            <span style={{ color: "#FF6321" }}><Typewriter words={["Experience", "Explore", "Interact With", "Navigate"]} /></span>
           </motion.h1>
 
           {/* Description */}
@@ -424,11 +428,11 @@ const Hero = () => {
           </motion.p>
 
           {/* Buttons */}
-          <motion.div variants={item} style={{ 
-            display: "flex", gap: "16px", flexWrap: "wrap", justifyContent: "center", marginTop: "8px" 
+          <motion.div variants={item} style={{
+            display: "flex", gap: "16px", flexWrap: "wrap", justifyContent: "center", marginTop: "8px"
           }}>
             <motion.button
-              whileHover={{ scale: 1.03, boxShadow: "0 8px 20px rgba(255, 99, 33, 0.25)" }} 
+              whileHover={{ scale: 1.03, boxShadow: "0 8px 20px rgba(255, 99, 33, 0.25)" }}
               whileTap={{ scale: 0.97 }}
               style={{
                 background: "#FF6321", color: "#ffffff", padding: "0 32px",
@@ -439,11 +443,11 @@ const Hero = () => {
               See Projects
             </motion.button>
             <motion.button
-              whileHover={{ scale: 1.03, boxShadow: "0 8px 20px rgba(0, 0, 0, 0.06)" }} 
+              whileHover={{ scale: 1.03, boxShadow: "0 8px 20px rgba(0, 0, 0, 0.06)" }}
               whileTap={{ scale: 0.97 }}
               style={{
                 background: "#ffffff", color: "#111827", padding: "0 32px",
-                borderRadius: "12px", fontWeight: 600, fontSize: "16px", 
+                borderRadius: "12px", fontWeight: 600, fontSize: "16px",
                 border: "1px solid #E5E7EB", cursor: "pointer",
                 display: "flex", alignItems: "center", justifyContent: "center", height: "52px"
               }}
@@ -472,8 +476,8 @@ const Hero = () => {
                 ? [...LEFT_ICONS, ...RIGHT_ICONS]
                 : [...LEFT_ICONS, ...RIGHT_ICONS, ...LEFT_ICONS, ...RIGHT_ICONS]
               ).map((icon, i) => (
-                <div 
-                  key={i} 
+                <div
+                  key={i}
                   style={{ display: "flex", alignItems: "center", gap: 12, opacity: 0.6, cursor: "pointer", transition: "all 0.3s ease" }}
                   onMouseEnter={e => {
                     e.currentTarget.style.opacity = 1;
@@ -484,11 +488,11 @@ const Hero = () => {
                     e.currentTarget.querySelector('img').style.filter = "grayscale(100%)";
                   }}
                 >
-                  <img 
-                    src={icon.src} 
-                    alt={icon.label} 
+                  <img
+                    src={icon.src}
+                    alt={icon.label}
                     loading="lazy"
-                    style={{ width: 34, height: 34, objectFit: "contain", filter: "grayscale(100%)", transition: "all 0.3s ease" }} 
+                    style={{ width: 34, height: 34, objectFit: "contain", filter: "grayscale(100%)", transition: "all 0.3s ease" }}
                   />
                   <span style={{ fontSize: 18, fontWeight: 600, letterSpacing: "-0.01em", color: "#111827" }}>
                     {icon.label}

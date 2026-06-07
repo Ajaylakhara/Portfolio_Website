@@ -18,7 +18,7 @@ export const MetricsGrid = ({ metrics }) => {
         >
           {/* Subtle accent border glow */}
           <div className="absolute inset-0 bg-[#FF6321]/5 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-          
+
           <div className="relative z-10">
             <h4 className="text-3xl md:text-4xl font-black text-[#FF6321] tracking-tight mb-2">
               {metric.value}

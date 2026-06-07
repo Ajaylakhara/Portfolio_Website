@@ -34,9 +34,8 @@ export const VisualTabs = ({ project }) => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`relative px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-colors duration-300 z-10 cursor-pointer ${
-                  isActive ? 'text-white' : 'text-gray-500 hover:text-[#060612]'
-                }`}
+                className={`relative px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-colors duration-300 z-10 cursor-pointer ${isActive ? 'text-white' : 'text-gray-500 hover:text-[#060612]'
+                  }`}
               >
                 {isActive && (
                   <motion.div
