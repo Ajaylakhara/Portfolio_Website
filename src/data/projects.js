@@ -72,7 +72,7 @@ export const projects = [
     ],
     description: "A premium clinical patient dashboard designed to streamline appointment scheduling, doctor discovery, and electronic health record retrieval.",
     liveLink: "https://medicarehub-health.vercel.app/",
-    githubLink: "https://github.com/Ajaylakhara/MedicareHub",
+    githubLink: "https://github.com/Ajaylakhara/Medicare_health_frontend",
     problem: "Legacy medical check-in systems suffer from high data latency, confusing appointment forms, and poor mobile device responsiveness.",
     detailedProblem: "Standard healthcare booking systems fail to convey surgeon and consultant availability dynamically. Patients frequently spend more than 15 minutes navigating complex medical sub-menus, leading to a massive drop-off in active portal engagement.",
     userPersona: "Digital patients seeking fast healthcare solutions and emergency medical consultations on mobile devices.",

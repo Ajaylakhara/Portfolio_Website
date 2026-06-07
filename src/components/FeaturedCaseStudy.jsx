@@ -273,7 +273,7 @@ const FeaturedCaseStudy = () => {
               </button>
               
               <button 
-                onClick={() => window.open("https://github.com/Ajaylakhara/MedicareHub", "_blank")}
+                onClick={() => window.open("https://github.com/Ajaylakhara/Medicare_health_frontend", "_blank")}
                 className="inline-flex items-center gap-2 border border-gray-300 text-gray-700 hover:text-[#111827] px-6 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 cursor-pointer"
               >
                 <Github size={18} />
