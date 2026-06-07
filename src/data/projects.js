@@ -9,50 +9,9 @@ import Logo6Img from "../assets/Logo/logo_6.png";
 const baseUrl = import.meta.env.BASE_URL || "/";
 
 
-// const HospitalImg = `${baseUrl}optimized/projecting/Hosital.webp`;
 const MedicareHubImg = `${baseUrl}optimized/projecting/medicare.webp`;
 
 export const projects = [
-  // {
-  //   id: "hospital-management",
-  //   title: "Hospital Management System",
-  //   outcomeTitle: "CareFlow: Reducing Clinical Wait Times by 40% & Streamlining EHR Access",
-  //   category: "UI Design",
-  //   techStack: ["React", "ASP.NET Core", "SQL Server", "Tailwind CSS"],
-  //   tags: ["React", "ASP.NET Core", "SQL Server", "Tailwind CSS"],
-  //   image: HospitalImg,
-  //   img: HospitalImg,
-  //   role: "Lead Full-Stack Architect",
-  //   duration: "4 Weeks",
-  //   metrics: [
-  //     { value: "40%", label: "Wait Time Reduction" },
-  //     { value: "98/100", label: "Lighthouse Performance" },
-  //     { value: "5k+", label: "EHRs Streamlined" },
-  //     { value: "15m", label: "Avg Appointment Time Saved" }
-  //   ],
-  //   description: "A comprehensive web application designed to streamline hospital operations, including patient records, appointment scheduling, and billing.",
-  //   liveLink: "https://hospital-demo.ajaylakhara.com",
-  //   githubLink: "https://github.com/Ajaylakhara/HospitalManagement",
-  //   problem: "Hospitals often struggle with fragmented data and inefficient manual processes for managing patient flow and medical records.",
-  //   detailedProblem: "Clinical administrative workflows were heavily bottlenecked by fragmented legacy software databases and manual paperwork. Nurses spent an average of 18 minutes per patient filing duplicate EHR entry forms, while patients experienced wait times of over 45 minutes simply to confirm scheduled appointments.",
-  //   userPersona: "Busy hospital administrative coordinators and clinical nursing staff who require low-latency access to accurate patient history, appointment queues, and quick check-in dashboards under high-stress conditions.",
-  //   detailedGoal: "Construct an enterprise-grade medical portal that decreases patient wait times by over 30%, centralizes records to eliminate paperwork, and reduces clinical EHR check-in overhead to under 3 minutes per patient.",
-  //   research: "Analyzed existing healthcare workflows to identify bottlenecks in patient registration and doctor-patient communication.",
-  //   ui: "Designed a clean, intuitive dashboard focused on quick access to critical patient information and scheduling tools.",
-  //   solution: "Engineered CareFlow—an optimized web portal backed by a low-latency SQL query structure and a reactive React dashboard. Implemented single-form electronic check-ins, automated patient routing algorithms to appropriate doctors, and a secure real-time doctor availability status dashboard.",
-  //   impact: "Successfully deployed in a pilot wing of a regional hospital. Slashed average patient wait times by 40%, reduced nursing check-in times to 1.5 minutes per patient, and supported seamless live sync of over 5,000 secure medical history records with zero performance lag.",
-  //   result: "Developed a scalable system that reduced administrative overhead and improved the accuracy of patient record management.",
-  //   userFlow: [
-  //     { step: "1", title: "Patient Registration", desc: "Administrative staff registers the patient, saving demographic details directly to CareFlow." },
-  //     { step: "2", title: "Automated Queue Placement", desc: "System schedules and places the patient in the dynamic queue based on triage status." },
-  //     { step: "3", title: "Physician Allocation", desc: "Real-time doctor scheduling dashboard alerts the closest available specialist of the new patient." },
-  //     { step: "4", title: "EHR Updates & Discharge", desc: "Specially formatted, single-view record sheet allows rapid doctor notes and auto-calculates billing." }
-  //   ],
-  //   wireframeStructure: {
-  //     type: "dashboard",
-  //     layout: ["Sidebar", "Header", "Dynamic Queue Cards", "Triage Stats Widget", "Patient Health Matrix Table"]
-  //   }
-  // },
   {
     id: "medicare-hub",
     title: "MedicareHub Health Portal",
