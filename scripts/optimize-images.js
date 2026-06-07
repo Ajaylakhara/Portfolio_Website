@@ -32,7 +32,7 @@ function ensureDirExists(dir) {
 async function optimizeImages() {
   try {
     console.log('--- Starting Image Optimization System ---');
-    
+
     ensureDirExists(optimizedDir);
     ensureDirExists(optimizedProjectingDir);
     ensureDirExists(optimizedHdIconsDir);
@@ -59,7 +59,7 @@ async function optimizeImages() {
           const srcPath = path.join(projectingDir, file);
           const nameWithoutExt = path.basename(file, ext);
           const destPath = path.join(optimizedProjectingDir, `${nameWithoutExt}.webp`);
-          
+
           await sharp(srcPath)
             .resize({ width: 800, withoutEnlargement: true })
             .webp({ quality: 75 })
@@ -130,11 +130,11 @@ async function optimizeImages() {
           .resize(32, 32)
           .png()
           .toFile(path.join(publicDir, 'favicon-32x32.png'));
-        
+
         await sharp(faviconSrcPath)
           .resize(32, 32)
           .toFile(path.join(publicDir, 'favicon.ico'));
-        
+
         console.log('✅ Favicon optimized successfully from Ajay.ico!');
         faviconProcessed = true;
       } catch (err) {
@@ -149,12 +149,12 @@ async function optimizeImages() {
           .resize(32, 32)
           .png()
           .toFile(path.join(publicDir, 'favicon-32x32.png'));
-        
+
         // Output standard lightweight ico
         await sharp(profileImgPath)
           .resize(32, 32)
           .toFile(path.join(publicDir, 'favicon.ico'));
-        
+
         console.log('✅ Favicon generated from profile image successfully!');
       } catch (err) {
         console.error('❌ Failed to generate fallback favicon:', err);

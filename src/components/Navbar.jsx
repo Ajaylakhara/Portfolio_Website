@@ -34,7 +34,7 @@ const Navbar = () => {
           {/* Left: Logo */}
           <Link to="/" className="flex items-center gap-2">
             <span className="text-4xl font-handwritten font-bold tracking-normal text-[#000000]">
-              AL<span style={{ color: "#FF6321" }}>.</span>
+              Aj<span style={{ color: "#FF6321" }}></span>
             </span>
           </Link>
 

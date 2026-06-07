@@ -17,6 +17,7 @@ const UIDashboard = `${baseUrl}optimized/projecting/ui_dashboard.webp`;
 const MobileApp = `${baseUrl}optimized/projecting/mobile_app.webp`;
 const BrandLogo = `${baseUrl}optimized/projecting/brand_logo.webp`;
 const WebLanding = `${baseUrl}optimized/projecting/web_landing.webp`;
+const MedicareHubImg = `${baseUrl}optimized/projecting/medicare.webp`;
 
 export const projects = [
   {
@@ -315,6 +316,46 @@ export const projects = [
     wireframeStructure: {
       type: "saas",
       layout: ["Logo Header & Sign In Button", "Value Proposition Hero", "Feature Grid Modules", "Glassmorphic Price Board"]
+    }
+  },
+  {
+    id: "medicare-hub",
+    title: "MedicareHub Health Portal",
+    outcomeTitle: "MedicareHub: Elevating Healthcare Access & Accelerating Patient Care Systems",
+    category: "Web Design",
+    techStack: ["React 19", "Framer Motion", "Tailwind CSS", "Vite"],
+    tags: ["React 19", "Framer Motion", "Tailwind CSS", "Vite"],
+    image: MedicareHubImg,
+    img: MedicareHubImg,
+    role: "Lead Frontend Architect",
+    duration: "3 Weeks",
+    metrics: [
+      { value: "99.9%", label: "Uptime Reliability" },
+      { value: "1.2s", label: "Page Load Index" },
+      { value: "30k+", label: "Daily Vitals Logged" },
+      { value: "50%", label: "Faster Booking Flow" }
+    ],
+    description: "A premium clinical patient dashboard designed to streamline appointment scheduling, doctor discovery, and electronic health record retrieval.",
+    liveLink: "https://medicarehub-health.vercel.app/",
+    githubLink: "https://github.com/Ajaylakhara/MedicareHub",
+    problem: "Legacy medical check-in systems suffer from high data latency, confusing appointment forms, and poor mobile device responsiveness.",
+    detailedProblem: "Standard healthcare booking systems fail to convey surgeon and consultant availability dynamically. Patients frequently spend more than 15 minutes navigating complex medical sub-menus, leading to a massive drop-off in active portal engagement.",
+    userPersona: "Digital patients seeking fast healthcare solutions and emergency medical consultations on mobile devices.",
+    detailedGoal: "Construct an immersive patient portal utilizing clean healthcare-teal highlights, smooth component animations, and instantaneous appointment booking loops under 3 clicks.",
+    research: "Reviewed modern medical telemetry layouts to design clear status checkmarks, intuitive specialist filter cards, and high-contrast clinical typography.",
+    ui: "Adopted a soft glassmorphic teal and deep navy theme featuring interactive calendar widgets and smooth responsive transitions.",
+    solution: "Engineered MedicareHub utilizing lightweight React components, optimized responsive breakpoints, and custom Framer Motion transition states for seamless 60fps operation.",
+    impact: "Achieved perfect responsive performance across tablets, smartphones, and large screens. Compressed average check-in friction by 50% while sustaining ultra-fast load speeds.",
+    result: "Developed an elite medical and patient booking interface showcase that highlights modern design sensibility and frontend optimization.",
+    userFlow: [
+      { step: "1", title: "Portal Onboarding", desc: "User opens dashboard, instantly receiving clinical services and certified doctor ratings." },
+      { step: "2", title: "Smart Filtering", desc: "Patient filters specialized doctors by location, fees, or timing without full-page reloads." },
+      { step: "3", title: "Appointment Lock", desc: "A sleek modal books the selected slot, capturing contact inputs in under 10 seconds." },
+      { step: "4", title: "Vitals Summary", desc: "Triggers a particle-supported success badge and registers digital healthcare check-ins." }
+    ],
+    wireframeStructure: {
+      type: "healthcare",
+      layout: ["Frosted Topbar", "Specialist Filtration Cards", "Dynamic Appointment Wizard", "Patient Records Matrix"]
     }
   },
   {
