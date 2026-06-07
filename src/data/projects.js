@@ -10,8 +10,47 @@ const baseUrl = import.meta.env.BASE_URL || "/";
 
 
 const MedicareHubImg = `${baseUrl}optimized/projecting/medicare.webp`;
+const BankAppDesignImg = `${baseUrl}optimized/projecting/BankApp_Design.webp`;
 
 export const projects = [
+  {
+    id: "bank-app-design",
+    title: "Apex Banking UI Kit",
+    outcomeTitle: "Apex Banking UI Kit: Designing a High-Fidelity Responsive Financial System",
+    category: "UI Design",
+    techStack: ["Figma", "UI/UX Design", "Wireframing"],
+    tags: ["Figma", "UI/UX Design", "Wireframing"],
+    image: BankAppDesignImg,
+    img: BankAppDesignImg,
+    role: "Lead UI/UX Designer",
+    duration: "2 Weeks",
+    metrics: [
+      { value: "45+", label: "Figma Screens" },
+      { value: "100%", label: "Auto-Layout" },
+      { value: "150+", label: "Community Dupes" }
+    ],
+    description: "A comprehensive, high-fidelity Banking UI Kit created in Figma, detailing responsive dashboards, sleek mobile screens, and a robust design system.",
+    liveLink: "https://www.figma.com/community/file/1625148447327410477",
+    problem: "Financial application designs often struggle to balance complex security requirements with clear, modern, and engaging user interfaces.",
+    detailedProblem: "Most online banking interfaces feel cluttered and outdated, making user navigation frustrating. Designing a unified web and mobile visual interface with a complete design system helps developers implement clean, accessible finance experiences.",
+    userPersona: "UX Designers and Frontend Developers looking for a modern, well-structured finance UI kit to build upon.",
+    detailedGoal: "Construct an immersive and sleek dark-and-light themed banking UI Kit with interactive components, transaction tracking modules, and comprehensive charts.",
+    research: "Analyzed top modern fintech application flows like Revolut, Wise, and Apple Card to structure transaction histories, card management, and account switches.",
+    ui: "Crafted a beautiful dark modern interface with custom neo-brutalist financial cards, vibrant accent tones, and clean information hierarchy.",
+    solution: "Designed 45+ pixel-perfect screens in Figma using auto-layout v5, comprehensive design tokens, interactive components, and responsive grid layouts.",
+    impact: "Created a popular Figma Community template that provides ready-to-code components and highly intuitive banking layouts for UI/UX designers globally.",
+    result: "Established an elite fintech design system showcase highlighting modern layout aesthetics, clean navigation hierarchies, and developer-friendly Figma specs.",
+    userFlow: [
+      { step: "1", title: "Dashboard Overview", desc: "User views total balance, recent transactions, and graphical spending analyses at a glance." },
+      { step: "2", title: "Card Management", desc: "Select and view virtual credit/debit cards, toggling limits or locking/unlocking them instantly." },
+      { step: "3", title: "Quick Transfer", desc: "Send money to frequent contacts in a simple, streamlined two-step flow." },
+      { step: "4", title: "Dark/Light Toggle", desc: "Switch the entire visual system between custom dark and light UI states seamlessly." }
+    ],
+    wireframeStructure: {
+      type: "fintech",
+      layout: ["Card Carousel", "Spending Analytics Chart", "Quick Transfer Bar", "Transaction Activity Feed"]
+    }
+  },
   {
     id: "medicare-hub",
     title: "MedicareHub Health Portal",

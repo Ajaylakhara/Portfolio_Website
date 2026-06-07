@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 const baseUrl = import.meta.env.BASE_URL || "/";
-const profileImg = `${baseUrl}optimized/profile.webp`;
+const profileImg = `${baseUrl}optimized/Ajay_About.jpeg`;
 
 const ProfileCard = () => {
   return (

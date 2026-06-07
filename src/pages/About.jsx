@@ -2,6 +2,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Linkedin, Github, Mail, Download } from "lucide-react";
 
+const baseUrl = import.meta.env.BASE_URL || "/";
+
 const About = () => {
   return (
     <div className="pt-32 pb-20">
@@ -16,6 +18,12 @@ const About = () => {
           >
             <div className="bg-surface border border-white/10 rounded-3xl p-8 sticky top-32 overflow-hidden group">
               <div className="aspect-square w-full rounded-2xl bg-gray-800 mb-6 overflow-hidden relative">
+                <img
+                  src={`${baseUrl}optimized/Ajay_About.jpeg`}
+                  alt="Ajay Lakhara"
+                  className="w-full h-full object-cover object-top opacity-90 transition-transform duration-500 group-hover:scale-105"
+                  loading="eager"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
                   <p className="text-xs uppercase tracking-widest font-bold text-accent mb-1">Developer & Designer</p>
