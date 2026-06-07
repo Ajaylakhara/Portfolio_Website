@@ -1,54 +1,73 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Favicon Configuration -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    
-    <title>Ajay Lakhara | UI/UX Designer & Full-Stack Developer</title>
 
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Ajay Lakhara - Portfolio. Explore high-performance personal projects showcasing expert UI/UX design, full-stack web applications, mobile interfaces, and digital branding with real-world impact." />
-    <meta name="keywords" content="Ajay Lakhara, UI/UX Designer, Full-Stack Developer, Web Design, React, ASP.NET Core, SQL Server, Tailwind CSS, Portfolio" />
-    <meta name="author" content="Ajay Lakhara" />
-    <meta name="robots" content="index, follow" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://Ajaylakhara.github.io/Portfolio_Website/" />
-    <meta property="og:title" content="Ajay Lakhara | UI/UX Designer & Developer" />
-    <meta property="og:description" content="Explore personal projects, branding mockups, and scalable web platforms designed with micro-animations and production-grade technologies." />
-    <meta property="og:image" content="/optimized/profile.webp" />
+  <!-- Favicon Configuration -->
+  <link rel="icon" type="image/x-icon" href="%BASE_URL%favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="%BASE_URL%favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="%BASE_URL%favicon-16x16.png" />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://Ajaylakhara.github.io/Portfolio_Website/" />
-    <meta property="twitter:title" content="Ajay Lakhara | UI/UX Designer & Developer" />
-    <meta property="twitter:description" content="Explore personal projects, branding mockups, and scalable web platforms designed with micro-animations." />
-    <meta property="twitter:image" content="/optimized/profile.webp" />
+  <title>Ajay Lakhara | UI/UX Designer & Full-Stack Developer</title>
 
-    <!-- Font Optimization (Preconnect for speed, asynchronously loaded to prevent render blocking) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Caveat:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Caveat:wght@400;700&display=swap">
-    </noscript>
-    <!-- LCP Image Preload: profile image is primary content image -->
-    <link rel="preload" href="/Portfolio_Website/optimized/profile.webp" as="image" type="image/webp" />
-    <!-- Critical inline CSS: prevent CLS from unstyled content flash -->
-    <style>
-      html { background: #ffffff; }
-      body { margin: 0; font-family: Inter, system-ui, -apple-system, sans-serif; }
-      #root { min-height: 100vh; }
-    </style>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Ajay Lakhara - Portfolio. Explore high-performance personal projects showcasing expert UI/UX design, full-stack web applications, mobile interfaces, and digital branding with real-world impact." />
+  <meta name="keywords"
+    content="Ajay Lakhara, UI/UX Designer, Full-Stack Developer, Web Design, React, ASP.NET Core, SQL Server, Tailwind CSS, Portfolio" />
+  <meta name="author" content="Ajay Lakhara" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://Ajaylakhara.github.io/Portfolio_Website/" />
+  <meta property="og:title" content="Ajay Lakhara | UI/UX Designer & Developer" />
+  <meta property="og:description"
+    content="Explore personal projects, branding mockups, and scalable web platforms designed with micro-animations and production-grade technologies." />
+  <meta property="og:image" content="/optimized/profile.webp" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://Ajaylakhara.github.io/Portfolio_Website/" />
+  <meta property="twitter:title" content="Ajay Lakhara | UI/UX Designer & Developer" />
+  <meta property="twitter:description"
+    content="Explore personal projects, branding mockups, and scalable web platforms designed with micro-animations." />
+  <meta property="twitter:image" content="/optimized/profile.webp" />
+
+  <!-- Font Optimization (Preconnect for speed, asynchronously loaded to prevent render blocking) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Caveat:wght@400;700&display=swap"
+    as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Caveat:wght@400;700&display=swap">
+  </noscript>
+  <!-- LCP Image Preload: profile image is primary content image -->
+  <link rel="preload" href="/Portfolio_Website/optimized/profile.webp" as="image" type="image/webp" />
+  <!-- Critical inline CSS: prevent CLS from unstyled content flash -->
+  <style>
+    html {
+      background: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+    }
+
+    #root {
+      min-height: 100vh;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
 </html>
