@@ -118,8 +118,48 @@ async function optimizeImages() {
       console.warn(`⚠️ Tech images directory not found at: ${techImagesDir}`);
     }
 
-    // 4. Optimize Favicon (Disabled to prevent overwriting the custom "Aj" Caveat favicon)
-    console.log('Skipping Favicon optimization to preserve custom favicon...');
+    // 4. Optimize Favicon (Extract first layer or convert from logo/profile)
+    console.log('Optimizing Favicon...');
+    let faviconProcessed = false;
+
+    // Try processing source favicon Ajay.ico
+    if (fs.existsSync(faviconSrcPath)) {
+      try {
+        // ICO might fail depending on sharp's installation config, so we wrap it
+        await sharp(faviconSrcPath)
+          .resize(32, 32)
+          .png()
+          .toFile(path.join(publicDir, 'favicon-32x32.png'));
+
+        await sharp(faviconSrcPath)
+          .resize(32, 32)
+          .toFile(path.join(publicDir, 'favicon.ico'));
+
+        console.log('✅ Favicon optimized successfully from Ajay.ico!');
+        faviconProcessed = true;
+      } catch (err) {
+        console.warn('⚠️ Sharp failed to parse Ajay.ico. Falling back to profile image for favicon...');
+      }
+    }
+
+    // Fallback: Use profile image if Ajay.ico failed or is missing
+    if (!faviconProcessed && fs.existsSync(profileImgPath)) {
+      try {
+        await sharp(profileImgPath)
+          .resize(32, 32)
+          .png()
+          .toFile(path.join(publicDir, 'favicon-32x32.png'));
+
+        // Output standard lightweight ico
+        await sharp(profileImgPath)
+          .resize(32, 32)
+          .toFile(path.join(publicDir, 'favicon.ico'));
+
+        console.log('✅ Favicon generated from profile image successfully!');
+      } catch (err) {
+        console.error('❌ Failed to generate fallback favicon:', err);
+      }
+    }
 
     console.log('--- Image Optimization System Complete! ---');
   } catch (error) {
