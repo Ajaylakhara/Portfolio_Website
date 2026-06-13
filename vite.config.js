@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  base: '/Portfolio_Website/', 
+  base: process.env.VERCEL ? '/' : '/Portfolio_Website/', 
   plugins: [react(), tailwindcss()],
   build: {
     cssCodeSplit: true,
