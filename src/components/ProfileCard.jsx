@@ -25,7 +25,7 @@ const ProfileCard = () => {
             alt="Ajay Lakhara"
             className="w-full h-full object-cover object-top opacity-95"
             loading="eager"
-            fetchpriority="high"
+            fetchPriority="high"
             width="320"
             height="360"
             style={{

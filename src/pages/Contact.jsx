@@ -1,19 +1,57 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, CheckCircle } from "lucide-react";
+import { Send, CheckCircle, AlertTriangle } from "lucide-react";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState("idle"); // idle, sending, success
+  const [status, setStatus] = useState("idle"); // idle, sending, success, error
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setStatus("sending");
-    // Simulate sending
-    setTimeout(() => {
-      setStatus("success");
-      setFormData({ name: "", email: "", message: "" });
-    }, 1500);
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    // Fallback if environment variables are not configured yet
+    if (
+      !serviceId ||
+      !templateId ||
+      !publicKey ||
+      serviceId === "your_service_id_here" ||
+      templateId === "your_template_id_here" ||
+      publicKey === "your_public_key_here"
+    ) {
+      console.warn("EmailJS credentials are not configured. Falling back to simulation mode.");
+      setTimeout(() => {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+      }, 1500);
+      return;
+    }
+
+    const templateParams = {
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+      time: new Date().toLocaleString(),
+    };
+
+    emailjs
+      .send(serviceId, templateId, templateParams, publicKey)
+      .then(
+        (response) => {
+          console.log("EmailJS SUCCESS!", response.status, response.text);
+          setStatus("success");
+          setFormData({ name: "", email: "", message: "" });
+        },
+        (error) => {
+          console.error("EmailJS FAILED...", error);
+          setStatus("error");
+        }
+      );
   };
 
   return (
@@ -45,7 +83,7 @@ const Contact = () => {
               <p className="text-gray-400 mb-8">Thank you for reaching out. I'll get back to you shortly.</p>
               <button
                 onClick={() => setStatus("idle")}
-                className="text-accent hover:underline"
+                className="text-accent hover:underline cursor-pointer font-semibold"
               >
                 Send another message
               </button>
@@ -87,10 +125,18 @@ const Contact = () => {
                   className="w-full bg-background border border-white/10 rounded-xl px-5 py-4 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all resize-none"
                 ></textarea>
               </div>
+
+              {status === "error" && (
+                <div className="flex items-center gap-2 text-red-500 text-sm bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3">
+                  <AlertTriangle size={16} />
+                  <span>Failed to send message. Please check connection or try again.</span>
+                </div>
+              )}
+
               <button
                 disabled={status === "sending"}
                 type="submit"
-                className="w-full py-5 bg-accent text-white rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-accent-hover transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-accent/20 border-glow"
+                className="w-full py-5 bg-accent text-white rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-accent-hover transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-accent/20 border-glow cursor-pointer"
               >
                 {status === "sending" ? "Sending..." : "Send Message"}
                 <Send size={18} />
