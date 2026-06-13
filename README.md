@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  <a href="https://Ajaylakhara.github.io/Portfolio_Website" target="_blank">
+  <a href="https://portfolio-website-theta-brown-78.vercel.app" target="_blank">
     <img src="https://img.shields.io/badge/🌐_Live_Portfolio-6C63FF?style=for-the-badge&logoColor=white" alt="Live Portfolio" />
   </a>
   &nbsp;
@@ -140,7 +140,7 @@ VITE_EMAILJS_PUBLIC_KEY=your_public_key
 ## 🔗 Links
 
 <p>
-  <a href="https://Ajaylakhara.github.io/Portfolio_Website">
+  <a href="https://portfolio-website-theta-brown-78.vercel.app">
     <img src="https://img.shields.io/badge/🌐_Live_Site-Visit_Now-6C63FF?style=for-the-badge" />
   </a>
   &nbsp;
